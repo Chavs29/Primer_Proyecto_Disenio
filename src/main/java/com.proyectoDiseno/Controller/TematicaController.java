@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/Tematica")
@@ -24,6 +25,8 @@ public class TematicaController {
         try {
             byte[] imagenBytes = imagen.getBytes();
             Tematica tematica = new Tematica(nombre, descripcion, imagenBytes);
+            long id = System.currentTimeMillis(); // Generar ID como un long
+            tematica.setId(id);
             tematicaService.crearTematica(tematica);
             response.setSuccess(true);
             response.setMessage("Tematica creada exitosamente.");
@@ -34,5 +37,10 @@ public class TematicaController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-}
+    @GetMapping("/lista")
+    public ResponseEntity<List<Tematica>> obtenerTodasTematicas() {
+        List<Tematica> tematicas = tematicaService.obtenerTodasLasTematicas();
+        return new ResponseEntity<>(tematicas, HttpStatus.OK);
+    }
 
+}
