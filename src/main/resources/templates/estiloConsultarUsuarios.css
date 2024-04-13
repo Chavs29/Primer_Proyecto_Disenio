@@ -1,0 +1,68 @@
+body {
+  background-color: #BFBFB8;
+}
+ul{
+   font-family: sans-serif;  
+}
+ul li{
+    display: inline-block;
+    text-align: center;
+}
+ul li a{
+    text-decoration: none;
+    color: #BFBFB8;
+    padding: 20px;
+    display: block;
+}
+ul li a:hover{
+    background: #4C594F;
+}
+.cuadroTitulo {
+  width: 100%;
+  height: 100px;
+  padding: 0;
+  margin: none;
+  background-color: #35403A; /*color del fondo del cuadro*/
+  color: black; /*color del texto del cuadro*/
+  text-decoration: none; 
+}
+h1 {
+    color: #BFBFB8;
+    font-family: sans-serif;
+    font-style: normal;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.container{
+    top: 20px;
+    border: solid 1px black;   
+}
+
+tablaUsuarios{
+    color: #A4A69C;
+    font-size: 16px;;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+thead{
+    background: #A4A69C;
+}
+th{
+    padding: 20px 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+td{
+    padding: 15px;
+    border-bottom: solid 1px black;  
+}
+tbody tr:hover{
+    background: #A4A69C;
+}
