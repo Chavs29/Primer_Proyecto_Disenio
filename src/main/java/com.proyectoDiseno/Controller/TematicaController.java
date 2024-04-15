@@ -1,5 +1,5 @@
 package com.proyectoDiseno.Controller;
-
+import com.proyectoDiseno.ConexionIA.ConexionIA;
 import com.proyectoDiseno.Model.ServiceResponse;
 import com.proyectoDiseno.Model.Tematica;
 import com.proyectoDiseno.Service.ITematicaService;
@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/Tematica")
@@ -42,5 +43,26 @@ public class TematicaController {
         List<Tematica> tematicas = tematicaService.obtenerTodasLasTematicas();
         return new ResponseEntity<>(tematicas, HttpStatus.OK);
     }
+
+    @PostMapping("/consultaChatGPT")
+    public ResponseEntity<ServiceResponse> consultarChatGPT(@RequestBody Map<String, Object> requestBody) {
+        ServiceResponse response = new ServiceResponse();
+        try {
+            System.out.println("Consultar ChatGPT llamado"); // Verificar si se llama al controlador
+            String texto = (String) requestBody.get("texto"); // Convertir el valor a String
+            System.out.println("Texto recibido: " + texto); // Verificar el texto recibido
+            String respuesta = ConexionIA.chatGPT(texto);
+            response.setSuccess(true);
+            response.setMessage(respuesta);
+            System.out.println("Respuesta: " + respuesta);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 }
