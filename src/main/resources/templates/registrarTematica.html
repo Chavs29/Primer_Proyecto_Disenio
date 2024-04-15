@@ -7,29 +7,30 @@
     <link rel="stylesheet" href="estiloRegistrarTematica.css">
 </head>
 <body>
-    <form id="formularioRegistro">
-        <div class="cuadroTitulo">
-            <h1>Registrar nueva temática</h1>
-            <ul>
-                <li><a href="registrarTexto.html">Registrar texto</a></li>
-                <li><a href="consultarTematica.html">Consultar temática</a></li>
-                <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
-                <li><a href="menu.html">Menú principal</a></li>
-            </ul>
-        </div>
+<form id="formularioRegistro">
+    <div class="cuadroTitulo">
+        <h1>Registrar nueva temática</h1>
+        <ul>
+            <li><a href="registrarTexto.html">Registrar texto</a></li>
+            <li><a href="consultarTematica.html">Consultar temática</a></li>
+            <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
+            <li><a href="menu.html">Menú principal</a></li>
+        </ul>
+    </div>
 
-        <div class="datos">
-            <div><p>Ingrese los datos que se le solicitan para ingresar una nueva temática al sistema.</p></div>
-            <div><p>Ingrese el nombre de la temática:</p></div>
-            <div class="form_input"><input type="text" name="nombreTematica" placeholder="Nombre temática" required></div>
-            <div><p>Ingrese la descripción de la temática:</p></div>
-            <div class="form_input"><input type="text" name="descripcionTematica" placeholder="Descripción temática" required></div>
-            <div><p>Ingrese una imagen presentativa de la temática:</p></div>
-            <div class="form_input"><input type="file" name="imagenTematica" accept="image/*" placeholder="Seleccionar" required></div>
-            <button type="submit" id="btnRegistrar">Registrar temática</button>
-        </div>
-    </form>
+    <div class="datos">
+        <div><p>Ingrese los datos que se le solicitan para ingresar una nueva temática al sistema.</p></div>
+        <div><p>Ingrese el nombre de la temática:</p></div>
+        <div class="form_input"><input type="text" name="nombreTematica" placeholder="Nombre temática" required></div>
+        <div><p>Ingrese la descripción de la temática:</p></div>
+        <div class="form_input"><input type="text" name="descripcionTematica" placeholder="Descripción temática" required></div>
+        <div><p>Ingrese una imagen presentativa de la temática:</p></div>
+        <div class="form_input"><input type="file" name="imagenTematica" accept="image/*" required></div>
+        <button type="submit" id="btnRegistrar">Registrar temática</button>
 
-    <script src="script.js"></script>
+    </div>
+</form>
+
+<script src="scriptCrearTematica.js"></script>
 </body>
 </html>
