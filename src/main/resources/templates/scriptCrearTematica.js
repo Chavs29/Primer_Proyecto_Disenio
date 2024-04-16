@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData,
             headers: {
-                'Accept': 'application/json', // Acepta respuesta en formato JSON
-                // No establezcas el Content-Type manualmente, dejar que FormData lo maneje automáticamente
+                'Accept': 'application/json',
             }
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 if (data.success) {
                     alert('Tematica registrada exitosamente.');
                     formularioRegistro.reset();

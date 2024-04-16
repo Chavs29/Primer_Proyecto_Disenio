@@ -33,6 +33,7 @@ public class TematicaController {
             response.setMessage("Tematica creada exitosamente.");
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             response.setSuccess(false);
             response.setMessage("Error al crear la Tematica: " + e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,12 +46,11 @@ public class TematicaController {
     }
 
     @PostMapping("/consultaChatGPT")
-    public ResponseEntity<ServiceResponse> consultarChatGPT(@RequestBody Map<String, Object> requestBody) {
+    public ResponseEntity<ServiceResponse> consultarChatGPT(@RequestBody Map<String, String> body) {
         ServiceResponse response = new ServiceResponse();
         try {
-            System.out.println("Consultar ChatGPT llamado"); // Verificar si se llama al controlador
-            String texto = (String) requestBody.get("texto"); // Convertir el valor a String
-            System.out.println("Texto recibido: " + texto); // Verificar el texto recibido
+            String texto = body.get("texto");
+            System.out.println("Consultar ChatGPT llamado con texto: " + texto);
             String respuesta = ConexionIA.chatGPT(texto);
             response.setSuccess(true);
             response.setMessage(respuesta);
@@ -62,6 +62,43 @@ public class TematicaController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @PostMapping("/consultaPalabrasClave")
+    public ResponseEntity<ServiceResponse> consultarPalabrasClave(@RequestBody Map<String, Object> requestBody) {
+        ServiceResponse response = new ServiceResponse();
+        try {
+            String texto = (String) requestBody.get("texto");
+            String pregunta = "Cuáles son las palabra clave en el texto, hazlo solamente separados por comas: " + texto;
+            String respuesta = ConexionIA.chatGPT(pregunta);
+            response.setSuccess(true);
+            response.setMessage(respuesta);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/consultaSentimiento")
+    public ResponseEntity<ServiceResponse> realizarConsultaSentimiento(@RequestBody Map<String, Object> requestBody) {
+        ServiceResponse response = new ServiceResponse();
+        try {
+            String texto = (String) requestBody.get("texto");
+            String pregunta = "Cual es el sentimiento de stanford del texto:" + texto;
+            String respuesta = ConexionIA.chatGPT(pregunta);
+            response.setSuccess(true);
+            response.setMessage(respuesta);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.setSuccess(false);
+            response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 
 

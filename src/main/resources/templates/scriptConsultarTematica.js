@@ -20,31 +20,29 @@ function obtenerTextoSeleccionado() {
     return textoSeleccionado;
 }
 
-function consultarChatGPT() {
+async function consultarChatGPT() {
     console.log('Consultar ChatGPT clicado');
-    var texto = obtenerTextoSeleccionado();
-    var dataToSend = { texto: texto };
-    console.log('Datos a enviar:', dataToSend); // Mostrar datos a enviar en la consola
-    fetch('http://localhost:9090/api/v1/Tematica/consultaChatGPT', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataToSend)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Respuesta recibida:', data); // Mostrar respuesta recibida en la consola
-        mostrarResultado(data.message); // Llamamos a la función para mostrar el resultado
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    var textoSelect= obtenerTextoSeleccionado();
+    var url = 'http://localhost:9090/api/v1/Tematica/consultaChatGPT';
+    console.log('URL de la solicitud:', url);
+    var datos = {
+        texto: textoSelect
+    }
+    fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+        })
+
 }
 
 function mostrarResultado(resultado) {
-    console.log('Resultado a mostrar:', resultado); // Verificar resultado a mostrar en la consola
-    var resultadoContainer = document.getElementById("resultadoContainer");
-    resultadoContainer.value = resultado;
+    const ventanaEmergente = window.open('', '_blank', 'width=600,height=400');
+    ventanaEmergente.document.write(`<html><head><title>Resultado</title></head><body><h1>Palabras Clave Generadas:</h1><p>${resultado}</p></body></html>`);
 }
-
