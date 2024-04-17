@@ -4,16 +4,16 @@ document.addEventListener("DOMContentLoaded", function() {
     formularioValidacion.addEventListener('submit', async function(event) {
         event.preventDefault();
         const codigo = document.querySelector("#codigoInput").value;
+        const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
 
         try {
-            const resultado = await validarCodigo(codigo);
+            const resultado = await validarCodigo(correo, codigo);
 
             // Mostrar el resultado de la validación en algún elemento HTML
             document.querySelector('#resultadoValidacion').textContent = resultado;
 
             // Si la validación es exitosa, redirigir a menu.html
             if (resultado === "Autenticación exitosa") {
-                alert("Autenticación exitosa");
                 window.location.href = "menu.html";
             }
         } catch (error) {
@@ -23,8 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-async function validarCodigo(codigo) {
-    const correo = "marcochaves0229@gmail.com"; // Correo fijo proporcionado
+async function validarCodigo(correo, codigo) {
     const formData = new FormData();
     formData.append('cuenta', correo);
     formData.append('codigo', codigo);
