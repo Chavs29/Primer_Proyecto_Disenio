@@ -2,7 +2,7 @@ body {
   background-color: #BFBFB8;
 }
 ul{
-   font-family: sans-serif;  
+   font-family: sans-serif;
 }
 ul li{
     display: inline-block;
@@ -24,7 +24,7 @@ ul li a:hover{
   margin: none;
   background-color: #35403A; /*color del fondo del cuadro*/
   color: black; /*color del texto del cuadro*/
-  text-decoration: none; 
+  text-decoration: none;
 }
 h1 {
     color: #BFBFB8;
@@ -42,7 +42,7 @@ h1 {
 }
 .container{
     top: 20px;
-    border: solid 1px black;   
+    border: solid 1px black;
 }
 
 tablaUsuarios{
@@ -61,8 +61,14 @@ th{
 }
 td{
     padding: 15px;
-    border-bottom: solid 1px black;  
+    border-bottom: solid 1px black;
 }
 tbody tr:hover{
     background: #A4A69C;
+}
+
+/* Establecer un tamaño máximo para las imágenes de usuario */
+.fotoUsuario {
+    max-width: 100px; /* Define el ancho máximo */
+    max-height: 100px; /* Define el alto máximo */
 }

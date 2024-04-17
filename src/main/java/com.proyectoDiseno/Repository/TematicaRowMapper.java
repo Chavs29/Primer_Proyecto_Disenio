@@ -13,7 +13,7 @@ public class TematicaRowMapper implements RowMapper<Tematica> {
         tematica.setNombre(rs.getString("nombre"));
         tematica.setDescripcion(rs.getString("descripcion"));
         // Si el campo imagen es de tipo BLOB o VARBINARY, deberías manejarlo aquí
-        // tematica.setImagen(rs.getBytes("imagen"));
+        tematica.setImagen(rs.getBytes("fotoRepresentativa"));
         return tematica;
     }
 }
