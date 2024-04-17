@@ -18,7 +18,7 @@ private JdbcTemplate jdbcTemplate;
     public List<Usuario> getUsuarios() {
         String SQL = "SELECT * FROM Usuarios";
 
-        return jdbcTemplate.query(SQL, BeanPropertyRowMapper.newInstance(Usuario.class));
+        return jdbcTemplate.query(SQL, new UsuarioRowMapper());
 
     }
 
