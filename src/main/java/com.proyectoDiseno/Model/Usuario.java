@@ -10,7 +10,6 @@ public class Usuario {
     private String email;
     private String numero_telefono;
     private byte[] foto;
-
     public Usuario() {
         // Constructor vacío
     }
@@ -59,6 +58,7 @@ public class Usuario {
     public byte[] getFoto() {
         return foto;
     }
+
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
