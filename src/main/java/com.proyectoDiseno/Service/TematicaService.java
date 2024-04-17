@@ -12,12 +12,12 @@ public class TematicaService implements ITematicaService {
     private ITematicaRepository tematicaRepository;
 
     @Override
-    public List<Tematica> obtenerTodasLasTematicas() {
-        return tematicaRepository.findAll();
+    public List<Tematica> obtenerTodasLasTematicas(String correo) {
+        return tematicaRepository.findAll(correo);
     }
 
     @Override
-    public void crearTematica(Tematica tematica) {
-        tematicaRepository.save(tematica);
+    public void crearTematica(Tematica tematica, String correo) {
+        tematicaRepository.save(tematica, correo);
     }
 }
