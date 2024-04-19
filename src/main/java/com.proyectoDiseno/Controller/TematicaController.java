@@ -21,14 +21,15 @@ public class TematicaController {
     @PostMapping("/crear")
     public ResponseEntity<ServiceResponse> crearTematica(@RequestParam("nombre") String nombre,
                                                          @RequestParam("descripcion") String descripcion,
-                                                         @RequestParam("imagen") MultipartFile imagen) {
+                                                         @RequestParam("imagen") MultipartFile imagen,
+                                                         @RequestParam("emailUsuario") String email) {
         ServiceResponse response = new ServiceResponse();
         try {
             byte[] imagenBytes = imagen.getBytes();
             Tematica tematica = new Tematica(nombre, descripcion, imagenBytes);
             long id = System.currentTimeMillis(); // Generar ID como un long
             tematica.setId(id);
-            tematicaService.crearTematica(tematica);
+            tematicaService.crearTematica(tematica, email);
             response.setSuccess(true);
             response.setMessage("Tematica creada exitosamente.");
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -40,8 +41,8 @@ public class TematicaController {
         }
     }
     @GetMapping("/lista")
-    public ResponseEntity<List<Tematica>> obtenerTodasTematicas() {
-        List<Tematica> tematicas = tematicaService.obtenerTodasLasTematicas();
+    public ResponseEntity<List<Tematica>> obtenerTodasTematicas(String correo) {
+        List<Tematica> tematicas = tematicaService.obtenerTodasLasTematicas(correo);
         return new ResponseEntity<>(tematicas, HttpStatus.OK);
     }
 

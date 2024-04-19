@@ -12,15 +12,16 @@ public class TematicaRepository implements ITematicaRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Tematica> findAll() {
-        // Implementa la lógica para obtener todas las temáticas desde la base de datos
-        String SQL = "SELECT * FROM Tematicas";
-        return jdbcTemplate.query(SQL, new TematicaRowMapper());
+    public List<Tematica> findAll(String correo) {
+        // Implementa la lógica para obtener todas las temáticas asociadas a un correo específico desde la base de datos
+        String SQL = "SELECT * FROM Tematicas WHERE emailUsuario = ?";
+        return jdbcTemplate.query(SQL, new Object[]{correo}, new TematicaRowMapper());
     }
 
+
     @Override
-    public void save(Tematica tematica) {
-        String SQL = "INSERT INTO Tematicas (nombre, descripcion, fotoRepresentativa) VALUES (?, ?, ?)";
-        jdbcTemplate.update(SQL, tematica.getNombre(), tematica.getDescripcion(), tematica.getImagen());
+    public void save(Tematica tematica, String correo) {
+        String SQL = "INSERT INTO Tematicas (nombre, descripcion, fotoRepresentativa, emailUsuario) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(SQL, tematica.getNombre(), tematica.getDescripcion(), tematica.getImagen(), correo);
     }
 }

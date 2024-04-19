@@ -4,15 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Validación de Código QR</title>
-  <link rel = "stylesheet" href="estiloIniciarSesion.css">
+  <link rel="stylesheet" href="estiloIniciarSesion.css">
 </head>
 <body>
-<h1>Validación de Código QR</h1>
-<img src="prueba.jpg">
-<br><br>
-<input type="text" id="codigoInput" placeholder="Ingrese el código">
-<br><br>
-<button onclick="validarCodigo()">Validar Código</button>
-<script src="scriptQR.js"></script>
- </body>
+<div class="container">
+  <h1>Validación de Código QR</h1>
+  <!-- Mostrar imagen estática del código QR -->
+  <div id="codigoQRContainer">
+    <img id="codigoQR" src="codigo.png" alt="Código QR">
+  </div>
+  <br><br>
+  <form id="formularioValidacion">
+    <!-- Agrega un campo para ingresar el código -->
+    <input type="text" id="codigoInput" placeholder="Ingrese el código" required>
+    <br><br>
+    <!-- Agrega un elemento para mostrar el resultado de la validación -->
+    <p id="resultadoValidacion"></p>
+    <br><br>
+    <button type="submit">Validar Código</button>
+  </form>
+</div>
+
+<script src="scriptIniciarSesion.js"></script>
+</body>
 </html>

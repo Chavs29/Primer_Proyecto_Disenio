@@ -5,11 +5,18 @@ public class Tematica implements ITematica {
     private String nombre;
     private String descripcion;
     private byte[] imagen;
+    private Usuario usuario; // Campo que representa la relación con Usuario
 
     public Tematica() {
         // Constructor vacío necesario para crear instancias sin proporcionar un id
     }
 
+    public Tematica(String nombre, String descripcion, byte[] imagen, Usuario usuario) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
+        this.usuario = usuario;
+    }
     public Tematica(String nombre, String descripcion, byte[] imagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -46,5 +53,13 @@ public class Tematica implements ITematica {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

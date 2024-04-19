@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const opciones = document.getElementById('opciones');
+    const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
 
-    fetch('http://localhost:9090/api/v1/Tematica/lista')
+    const url = `http://localhost:9090/api/v1/Tematica/lista?correo=${correo}`;
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             data.forEach(tematica => {

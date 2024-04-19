@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const formularioRegistro = document.getElementById('formularioRegistro');
-
+    const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
     formularioRegistro.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('nombre', nombreTematica);
         formData.append('descripcion', descripcionTematica);
         formData.append('imagen', imagenTematica);
+        formData.append('emailUsuario',correo);
 
         fetch('http://localhost:9090/api/v1/Tematica/crear', {
             method: 'POST',
