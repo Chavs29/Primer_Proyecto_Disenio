@@ -20,7 +20,7 @@ function obtenerTextoSeleccionado() {
     return textoSeleccionado;
 }
 
-async function consultarChatGPT() {
+function consultarChatGPT() {
     console.log('Consultar ChatGPT clicado');
     var textoSelect= obtenerTextoSeleccionado();
     var url = 'http://localhost:9090/api/v1/Tematica/consultaChatGPT';
@@ -41,6 +41,29 @@ async function consultarChatGPT() {
         })
 
 }
+
+async function generarPalabrasClave() {
+    console.log('Consultar ChatGPT clicado');
+    var textoSelect= obtenerTextoSeleccionado();
+    var url = 'http://localhost:9090/api/v1/Tematica/consultaPalabrasClave';
+    console.log('URL de la solicitud:', url);
+    var datos = {
+        texto: textoSelect
+    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+        })
+        .then(response => response.json())
+        .then(data => {
+           debugger
+        })
+
+}
+
 
 function mostrarResultado(resultado) {
     const ventanaEmergente = window.open('', '_blank', 'width=600,height=400');

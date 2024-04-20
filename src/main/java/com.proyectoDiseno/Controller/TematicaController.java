@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Map;
 
@@ -46,21 +47,14 @@ public class TematicaController {
     }
 
     @PostMapping("/consultaChatGPT")
-    public ResponseEntity<ServiceResponse> consultarChatGPT(@RequestBody Map<String, String> body) {
+    public ServiceResponse consultarChatGPT(@RequestBody Map<String, String> body) {
+        String texto = body.get("texto");
+        String respuesta = ConexionIA.chatGPT(texto);
+        System.out.println("Pruebaaa: "+ respuesta);
         ServiceResponse response = new ServiceResponse();
-        try {
-            String texto = body.get("texto");
-            System.out.println("Consultar ChatGPT llamado con texto: " + texto);
-            String respuesta = ConexionIA.chatGPT(texto);
-            response.setSuccess(true);
-            response.setMessage(respuesta);
-            System.out.println("Respuesta: " + respuesta);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            response.setSuccess(false);
-            response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        response.setSuccess(true);
+        response.setMessage(respuesta);
+        return response;
     }
 
 
@@ -73,13 +67,14 @@ public class TematicaController {
             String respuesta = ConexionIA.chatGPT(pregunta);
             response.setSuccess(true);
             response.setMessage(respuesta);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             response.setSuccess(false);
             response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
 
     @PostMapping("/consultaSentimiento")
     public ResponseEntity<ServiceResponse> realizarConsultaSentimiento(@RequestBody Map<String, Object> requestBody) {
