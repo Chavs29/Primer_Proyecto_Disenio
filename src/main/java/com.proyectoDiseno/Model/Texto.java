@@ -1,25 +1,14 @@
 package com.proyectoDiseno.Model;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Date;
 
-public class Texto {
-    @Getter
-    @Setter
+
+public class Texto implements ITexto{
     private Long id;
-    @Getter
-    @Setter
     private String contenido;
-    @Getter
-    @Setter
     private Date fechaRegistro;
-    @Getter
-    @Setter
     private int cantidadPalabras;
-    @Getter
-    @Setter
     private Tematica tematica; // Relación con Tematica
 
     public Texto() {
@@ -48,4 +37,44 @@ public class Texto {
         return palabras.length;
     }
 
+    // Getters y setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public int getCantidadPalabras() {
+        return cantidadPalabras;
+    }
+
+    public void setCantidadPalabras(int cantidadPalabras) {
+        this.cantidadPalabras = cantidadPalabras;
+    }
+
+    public Tematica getTematica() {
+        return tematica;
+    }
+
+    public void setTematica(Tematica tematica) {
+        this.tematica = tematica;
+    }
 }

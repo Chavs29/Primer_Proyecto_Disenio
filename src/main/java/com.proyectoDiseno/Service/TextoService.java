@@ -12,7 +12,6 @@ import java.util.List;
 public class TextoService implements ITextoService {
     @Autowired
     private ITextoRepository textoRepository;
-    private ITematica tematica;
     @Override
     public void crearTexto(Texto texto, String nombre) {
         textoRepository.save(texto, nombre);

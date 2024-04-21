@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formularioRegistroTexto.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const temaSeleccionado = document.getElementById('opciones').value;
+            const temaSeleccionado = obtenerTextoSeleccionado();
             const texto = document.getElementById('textoTematica').value;
 
             const formData = new FormData();
@@ -50,5 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.error('Elemento formularioRegistroTexto no encontrado en el DOM.');
+    }
+
+    function obtenerTextoSeleccionado() {
+        var opcionesTexto = document.getElementById("opciones");
+        var textoSeleccionado = opciones.options[opciones.selectedIndex].text;
+        return textoSeleccionado;
     }
 });

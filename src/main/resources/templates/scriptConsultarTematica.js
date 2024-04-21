@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     const opciones = document.getElementById('opciones');
-    const opcionesTexto = document.getElementById('opcionesTexto'); // Nuevo comboBox para los textos
     const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
 
     const url = `http://localhost:9090/api/v1/Tematica/lista?correo=${correo}`;
@@ -39,6 +38,7 @@ function cargarTextos() {
             .catch(error => console.error('Error:', error));
     });
 }
+
 function obtenerTextoSeleccionado() {
     var opcionesTexto = document.getElementById("opcionesTexto");
     var textoSeleccionado = opcionesTexto.options[opcionesTexto.selectedIndex].text;

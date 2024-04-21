@@ -1,6 +1,5 @@
 package com.proyectoDiseno.Controller;
 
-import com.proyectoDiseno.Model.Tematica;
 import com.proyectoDiseno.Model.Texto;
 import com.proyectoDiseno.Service.ITextoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.proyectoDiseno.Model.ServiceResponse;
+import java.util.Map;
 import java.util.List;
 
 @RestController
@@ -18,9 +18,10 @@ public class TextoController {
     private ITextoService textoService;
 
     @PostMapping("/crear")
-    public ResponseEntity<ServiceResponse> crearTexto(@RequestParam("contenido") String contenido,
-                                                      @RequestParam("nombre") String nombre) {
+    public ResponseEntity<ServiceResponse> crearTexto(@RequestBody Map<String, String> body) {
         ServiceResponse response = new ServiceResponse();
+        String contenido= body.get("contenido");
+        String nombre= body.get("nombre");
         try {
             Texto texto = new Texto(contenido, nombre);
             textoService.crearTexto(texto, nombre);
