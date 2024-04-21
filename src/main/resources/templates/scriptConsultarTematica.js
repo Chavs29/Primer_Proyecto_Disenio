@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const opciones = document.getElementById('opciones');
+    const opcionesTexto = document.getElementById('opcionesTexto'); // Nuevo comboBox para los textos
+    const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
 
-    fetch('http://localhost:9090/api/v1/Tematica/lista')
+    const url = `http://localhost:9090/api/v1/Tematica/lista?correo=${correo}`;
+
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             data.forEach(tematica => {
@@ -12,13 +16,37 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .catch(error => console.error('Error:', error));
-});
+
+    opciones.addEventListener('change', function() {
+        const tematicaId = obtenerTextoSeleccionado2();
+        const textosUrl = `http://localhost:9090/api/v1/Texto/tematica?id=`+tematicaId; // Endpoint para obtener textos por ID de temática
+
+        fetch(textosUrl)
+            .then(response => response.json())
+            .then(textosData => {
+                // Limpiar opcionesTexto antes de agregar nuevas opciones
+                opcionesTexto.innerHTML = '';
+                textosData.forEach(texto => {
+                    const option = document.createElement('option');
+                    option.text = texto.contenido; // Cambiar por el campo correcto del texto
+                    option.value = texto.id; // Cambiar por el campo correcto del ID del texto
+                    opcionesTexto.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
 function obtenerTextoSeleccionado() {
     var opcionesTexto = document.getElementById("opcionesTexto");
     var textoSeleccionado = opcionesTexto.options[opcionesTexto.selectedIndex].text;
     return textoSeleccionado;
 }
+
+    function obtenerTextoSeleccionado2() {
+        var opcionesTexto = document.getElementById("opciones");
+        var textoSeleccionado = opciones.options[opcionesTexto.selectedIndex].text;
+        return textoSeleccionado;
+    }
 
 async function consultarChatGPT() {
     var palabrasClave = localStorage.getItem('palabrasClave');
@@ -137,3 +165,4 @@ function mostrarResultado(resultado) {
     const ventanaEmergente = window.open('', '_blank', 'width=600,height=400');
     ventanaEmergente.document.write(`<html><head><title>Resultado</title></head><body><h1>Palabras Clave Generadas:</h1><p>${resultado}</p></body></html>`);
 }
+});
