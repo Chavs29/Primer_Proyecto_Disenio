@@ -25,6 +25,6 @@ public class TextoService implements ITextoService {
 
     @Override
     public List<Texto> getTextosByTematicaId(String id) {
-        return textoRepository.findByTematica(tematica.getNombre());
+        return textoRepository.findByTematica(id);
     }
 }

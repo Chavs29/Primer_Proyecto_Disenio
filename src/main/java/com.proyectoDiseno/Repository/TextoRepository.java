@@ -23,8 +23,9 @@ public class TextoRepository implements ITextoRepository {
     public List<Texto> findByTematica(String nombre) {
         // Implementar lógica para obtener textos por temática desde la base de datos
         String SQL = "SELECT * FROM Textos WHERE id_tematica = ?";
-        return jdbcTemplate.query(SQL,new TextoRowMapper());
+        return jdbcTemplate.query(SQL, new Object[]{nombre}, new TextoRowMapper());
     }
+
 
     @Override
     public void save(Texto texto, String nombre) {

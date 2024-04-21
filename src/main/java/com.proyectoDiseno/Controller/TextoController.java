@@ -1,5 +1,6 @@
 package com.proyectoDiseno.Controller;
 
+import com.proyectoDiseno.Model.Tematica;
 import com.proyectoDiseno.Model.Texto;
 import com.proyectoDiseno.Service.ITextoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,10 @@ public class TextoController {
     }
 
 
-    @GetMapping("/tematica/{id}")
-    public ResponseEntity<List<Texto>> obtenerTextosPorTematicaId(@PathVariable("id") String id) {
+    @GetMapping("/tematica")
+    public ResponseEntity<List<Texto>> obtenerTextosPorTematicaId(String id) {
         List<Texto> textos = textoService.getTextosByTematicaId(id);
         return new ResponseEntity<>(textos, HttpStatus.OK);
     }
-    }
+
+}
