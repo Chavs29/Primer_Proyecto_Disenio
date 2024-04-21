@@ -14,17 +14,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.value = tematica.id;
                 opciones.appendChild(option);
             });
+            cargarTextos();
         })
         .catch(error => console.error('Error:', error));
+    });
 
+// Función para cargar los textos
+function cargarTextos() {
     opciones.addEventListener('change', function() {
         const tematicaId = obtenerTextoSeleccionado2();
-        const textosUrl = `http://localhost:9090/api/v1/Texto/tematica?id=`+tematicaId; // Endpoint para obtener textos por ID de temática
+        const textosUrl = `http://localhost:9090/api/v1/Texto/tematica?id=` + tematicaId;
 
         fetch(textosUrl)
             .then(response => response.json())
             .then(textosData => {
-                // Limpiar opcionesTexto antes de agregar nuevas opciones
                 opcionesTexto.innerHTML = '';
                 textosData.forEach(texto => {
                     const option = document.createElement('option');
@@ -35,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error:', error));
     });
-
+}
 function obtenerTextoSeleccionado() {
     var opcionesTexto = document.getElementById("opcionesTexto");
     var textoSeleccionado = opcionesTexto.options[opcionesTexto.selectedIndex].text;
@@ -165,4 +168,4 @@ function mostrarResultado(resultado) {
     const ventanaEmergente = window.open('', '_blank', 'width=600,height=400');
     ventanaEmergente.document.write(`<html><head><title>Resultado</title></head><body><h1>Palabras Clave Generadas:</h1><p>${resultado}</p></body></html>`);
 }
-});
+
