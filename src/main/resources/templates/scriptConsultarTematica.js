@@ -136,7 +136,26 @@ async function generarWordCloud() {
         .then(data=>{
             console.log(data);
         })
+}
 
+async function generarAudio() {
+    var textoSelect= obtenerTextoSeleccionado();
+    var url = 'http://localhost:9090/api/v1/Audio/generar';
+    console.log('URL de la solicitud:', url);
+    var datos = {
+        texto: textoSelect
+    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+        })
 }
 async function verWordCloud() {
     try {
@@ -155,6 +174,25 @@ async function verWordCloud() {
         }
     } catch (error) {
         console.error('Error al cargar la imagen:', error);
+    }
+}
+
+async function mostrarAudio() {
+    try {
+        const url = 'audio_generado.mp3'; // Ruta fija del archivo de audio
+        const audio = new Audio(url);
+
+        // Mostrar ventana emergente
+        const confirmacion = confirm('¿Desea reproducir el audio?');
+
+        if (confirmacion) {
+            // Reproducir audio
+            audio.play();
+        } else {
+            console.log('El usuario canceló la reproducción.');
+        }
+    } catch (error) {
+        console.error('Error al cargar el archivo de audio:', error);
     }
 }
 
