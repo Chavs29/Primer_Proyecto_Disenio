@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.value = tematica.id;
                 opciones.appendChild(option);
             });
+            cargarTextos();
         })
         .catch(error => console.error('Error:', error));
     });
