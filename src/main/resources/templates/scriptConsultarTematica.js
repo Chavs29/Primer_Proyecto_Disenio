@@ -118,6 +118,46 @@ async function generarPalabrasClave() {
 
 }
 
+async function generarWordCloud() {
+    var textoSelect= obtenerTextoSeleccionado();
+    var url = 'http://localhost:9090/api/v1/WordCloud/generar';
+    console.log('URL de la solicitud:', url);
+    var datos = {
+        texto: textoSelect
+    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+        })
+
+}
+async function verWordCloud() {
+    try {
+        const response = await fetch('imagenWordCloud.png'); // Ruta de la imagen
+        if (response.ok) {
+            const blob = await response.blob(); // Convertir la respuesta a un objeto Blob
+            const imageUrl = URL.createObjectURL(blob); // Crear una URL de objeto para la imagen
+            const ventanaEmergente = window.open("", "Imagen", "width=500,height=500"); // Abrir una ventana emergente
+            const imagen = new Image(); // Crear un nuevo elemento de imagen
+            imagen.src = imageUrl; // Establecer la fuente de la imagen
+            imagen.onload = function() {
+                ventanaEmergente.document.body.appendChild(imagen); // Agregar la imagen al cuerpo de la ventana emergente cuando se cargue completamente
+            };
+        } else {
+            console.log('La imagen no se encontró o no se pudo cargar.');
+        }
+    } catch (error) {
+        console.error('Error al cargar la imagen:', error);
+    }
+}
+
 
 
 async function mostrarRespuestaChatGPT() {
