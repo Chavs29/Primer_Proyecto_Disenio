@@ -63,8 +63,11 @@ public class TematicaController {
     }
 
     private void guardarRespuestaEnArchivo(String respuesta, String nombreArchivo) {
-        // Ruta del archivo donde se guardará la respuesta
-        String rutaArchivo = "C:/Users/marco/OneDrive/Escritorio/proyectoDis/src/main/resources/templates/"+ nombreArchivo;
+        // Obtener la ruta del proyecto
+        String rutaProyecto = System.getProperty("user.dir");
+
+        // Ruta relativa donde se guardará el archivo dentro del proyecto
+        String rutaArchivo = rutaProyecto + "/src/main/resources/templates/" + nombreArchivo;
 
         try {
             // Crear un objeto FileWriter

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const temaSeleccionado = "Prueba1"; // Aquí puedes obtener la temática seleccionada si lo necesitas
+            const temaSeleccionado = obtenerTextoSeleccionado(); // Aquí puedes obtener la temática seleccionada si lo necesitas
             const contenido = document.getElementById('contenido').value;
 
             const requestData = {
