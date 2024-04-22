@@ -44,6 +44,12 @@ public class TextoController {
         return new ResponseEntity<>(textos, HttpStatus.OK);
     }
 
+    @GetMapping("/texto")
+    public ResponseEntity<List<Texto>> obtenerTexto(String texto) {
+        List<Texto> textos = textoService.obtenerTexto(texto);
+        return new ResponseEntity<>(textos, HttpStatus.OK);
+    }
+
 
     @GetMapping("/tematica")
     public ResponseEntity<List<Texto>> obtenerTextosPorTematicaId(String id) {

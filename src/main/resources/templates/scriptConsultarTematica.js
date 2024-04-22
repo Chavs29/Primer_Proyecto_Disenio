@@ -37,7 +37,32 @@ function cargarTextos() {
             })
             .catch(error => console.error('Error:', error));
     });
+
 }
+
+function cargarTextoDatos() {
+    opciones.addEventListener('change', function() {
+        const textoId = "Realizar pruebas de frontend es altamente efectivo para xxxx";
+        const textosUrl = `http://localhost:9090/api/v1/Texto/texto?id=` + textoId;
+
+        fetch(textosUrl)
+            .then(response => response.json())
+            .then(texto => {
+                rellenarFormulario(texto);
+            })
+            .catch(error => console.error('Error:', error));
+    });
+}
+
+// Función para rellenar el formulario con los datos del texto seleccionado
+function rellenarFormulario(texto) {
+    document.getElementById('id').value = texto.id; // Cambiar por el campo correcto del ID del texto
+    document.getElementById('tematica').value = obtenerTextoSeleccionado2(); // Cambiar por el campo correcto de la temática
+    document.getElementById('fecha').value = texto.fechaRegistro; // Cambiar por el campo correcto de la fecha
+    document.getElementById('cant').value = texto.cantidadPalabras; // Cambiar por el campo correcto de la cantidad de palabras
+    document.getElementById('cont').value = texto.contenido; // Cambiar por el campo correcto del contenido
+}
+
 
 function obtenerTextoSeleccionado() {
     var opcionesTexto = document.getElementById("opcionesTexto");

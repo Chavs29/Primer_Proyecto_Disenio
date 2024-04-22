@@ -23,6 +23,11 @@ public class TextoService implements ITextoService {
     }
 
     @Override
+    public List<Texto> obtenerTexto(String texto) {
+        return textoRepository.findTexto(texto);
+    }
+
+    @Override
     public List<Texto> getTextosByTematicaId(String id) {
         return textoRepository.findByTematica(id);
     }

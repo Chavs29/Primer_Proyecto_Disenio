@@ -20,6 +20,13 @@ public class TextoRepository implements ITextoRepository {
     }
 
     @Override
+    public List<Texto> findTexto(String texto) {
+        // Implementar lógica para obtener todos los textos desde la base de datos
+        String SQL = "SELECT * FROM Textos WHERE contenido = ?";
+        return jdbcTemplate.query(SQL, new Object[]{texto}, new TextoRowMapper());
+    }
+
+    @Override
     public List<Texto> findByTematica(String nombre) {
         // Implementar lógica para obtener textos por temática desde la base de datos
         String SQL = "SELECT * FROM Textos WHERE id_tematica = ?";

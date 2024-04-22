@@ -1,4 +1,4 @@
-package CrearPDF;
+package com.proyectoDiseno.CrearPDF;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+
 public class CrearPDF {
 
     public CrearPDF(){
