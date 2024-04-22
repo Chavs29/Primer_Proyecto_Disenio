@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Registrar un texto</title>
-        <link rel = "stylesheet" href="estiloRegistrarTexto.css">
-    </head>
-    <body>
-        <form>
-            <div class ="cuadroTitulo">
-                <h1>Registrar nuevo texto</h1>
-                <ul>
-                    <li><a href="registrarTematica.html">Registrar temática</a></li>
-                    <li><a href="consultarTematica.html">Consultar temática</a></li>
-                    <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
-                    <li><a href="menu.html">Menú principal</a></li>
-                </ul>  
-            </div>
-        </form>
-        
-        <form>
-            <div class="datos">
-                <div>  <p>Ingrese los datos que se le solicitan para ingresar un nuevo texto al sistema.</p> </div>  
-                <label for="opciones">Seleccione la temática a la cual desea registrarle un texto:</label>
-                  <select id="opciones"> 
-                      
-                  </select>
-                <div> <p>Si la temática de la cual se trata el texto no se encuentra, puede registrarla mediante el siguiente botón:</p> </div>
-                <div> <a href="registrarTematica.html" target="_blank" class="boton-registro">Registrar temática</a> </div>
-                <div> <p>Ingrese el texto que desea registar:</p> </div>
-                <div class="form_input"> <input type= "text" name="textoTematica" placeholder="Ingrese el texto" required> </input> </div>
-                <button type="submit" id="btnRegistrarTxt">Registrar</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Registrar un texto</title>
+    <link rel="stylesheet" href="estiloRegistrarTexto.css">
+</head>
+<body>
+<form>
+    <div class="cuadroTitulo">
+        <h1>Registrar nuevo texto</h1>
+        <ul>
+            <li><a href="registrarTematica.html">Registrar temática</a></li>
+            <li><a href="consultarTematica.html">Consultar temática</a></li>
+            <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
+            <li><a href="menu.html">Menú principal</a></li>
+        </ul>
+    </div>
+</form>
 
-            </div>
-        </form>
-        <script src="scriptCrearTexto.js"></script>
-    </body>
+<form id="formRegistroTexto">
+    <div class="datos">
+        <div>  <p>Ingrese los datos que se le solicitan para ingresar un nuevo texto al sistema.</p> </div>
+        <label for="opciones">Seleccione la temática a la cual desea registrarle un texto:</label>
+        <select id="opciones">
+
+        </select>
+        <div> <p>Si la temática de la cual se trata el texto no se encuentra, puede registrarla mediante el siguiente botón:</p> </div>
+        <div> <a href="registrarTematica.html" target="_blank" class="boton-registro">Registrar temática</a> </div>
+        <div> <p>Ingrese el texto que desea registar:</p> </div>
+        <div class="form_input"> <input type="text" id="contenido" name="contenido" placeholder="Ingrese el texto" required> </div>
+        <button type="submit" id="btnRegistrarTxt">Registrar</button>
+    </div>
+</form>
+<script src="scriptCrearTexto.js"></script>
+</body>
 </html>
-

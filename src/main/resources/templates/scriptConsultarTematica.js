@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Llenar las opciones al cargar el DOM
     const opciones = document.getElementById('opciones');
     const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
-
     const url = `http://localhost:9090/api/v1/Tematica/lista?correo=${correo}`;
 
     fetch(url)
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.value = tematica.id;
                 opciones.appendChild(option);
             });
-            cargarTextos();
         })
         .catch(error => console.error('Error:', error));
     });
