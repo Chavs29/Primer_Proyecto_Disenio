@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const tablaUsuarios = document.getElementById('tablaTematicas');
-
-    fetch('http://localhost:9090/api/v1/Usuario/list')
+    const tablaTematicas = document.getElementById('tablaTematicas');
+    const correoT = localStorage.getItem('correoo');
+    fetch('http://localhost:9090/api/v1/Tematica/lista?correo='+ correoT)
         .then(response => response.json())
         .then(data => {
-            const tbody = document.getElementById('tbodyUsuarios');
-            data.forEach(usuario => {
+            const tbody = document.getElementById('tbodyTematica');
+            data.forEach(tematica => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${usuario.id}</td>
-                    <td>${usuario.nombre}</td>
-                    <td>${usuario.descripcion}</td>
+                    <td>${tematica.id}</td>
+                    <td>${tematica.nombre}</td>
+                    <td>${tematica.descripcion}</td>
                     <td><img class="fotoTematicas" src="" alt="Foto de Tematicas"></td>
                 `;
                 tbody.appendChild(tr);
-                const fotoTematicas = tr.querySelector('.fotoUsuario');
-                obtenerImagen(usuario.foto, fotoUsuario);
+                const fotoTematicas = tr.querySelector('.fotoTematica');
+                obtenerImagen(tematica.foto, fotoTematica);
             });
         })
         .catch(error => console.error('Error:', error));

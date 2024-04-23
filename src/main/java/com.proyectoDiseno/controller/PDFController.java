@@ -24,7 +24,10 @@ public class PDFController {
 
     @PostMapping("/enviarPDFCorreo") // Cambiado a @PostMapping
     public ResponseEntity<String> generarPDF(@RequestBody Map<String, String> body) {
-        String[] filesNames = {"C:/Users/ISAIM/IdeaProjects/Primer_Proyecto_Disenio/src/main/resources/templates/respuestaChatGPT.txt", "C:/Users/ISAIM/IdeaProjects/Primer_Proyecto_Disenio/src/main/resources/templates/respuestaPalabrasClave.txt","C:/Users/ISAIM/IdeaProjects/Primer_Proyecto_Disenio/src/main/resources/templates/respuestaSentimiento.txt"};
+
+        String rutaProyecto = System.getProperty("user.dir");
+
+        String[] filesNames = {rutaProyecto + "/src/main/resources/templates/respuestaChatGPT.txt", rutaProyecto + "/src/main/resources/templates/respuestaPalabrasClave.txt",rutaProyecto + "/src/main/resources/templates/respuestaSentimiento.txt"};
         ArrayList<String> data = gestionarArchivosService.leerTxt(filesNames);
         byte[] pdfBytes = crearPDFService.crearPDF(data);
         String asunto = "Datos de Inteligencias JIMAYE";

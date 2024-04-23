@@ -22,8 +22,8 @@ public class CrearPDF {
             documento.open();
 
             agregarContenido(documento, contenido);
-
-            File imagenFile = new File("/Users/ISAIM/IdeaProjects/Primer_Proyecto_Disenio/src/main/resources/templates/imagenWordCloud.png");
+            String rutaProyecto = System.getProperty("user.dir");
+            File imagenFile = new File(rutaProyecto + "/src/main/resources/templates/imagenWordCloud.png");
             if (imagenFile.exists()) {
                 Image imagen = Image.getInstance(imagenFile.getAbsolutePath());
                 documento.add(imagen);

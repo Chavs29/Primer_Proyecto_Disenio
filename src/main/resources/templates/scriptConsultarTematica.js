@@ -205,15 +205,15 @@ async function generarAudio() {
 }
 async function verWordCloud() {
     try {
-        const response = await fetch('imagenWordCloud.png'); // Ruta de la imagen
+        const response = await fetch('imagenWordCloud.png');
         if (response.ok) {
-            const blob = await response.blob(); // Convertir la respuesta a un objeto Blob
-            const imageUrl = URL.createObjectURL(blob); // Crear una URL de objeto para la imagen
-            const ventanaEmergente = window.open("", "Imagen", "width=500,height=500"); // Abrir una ventana emergente
-            const imagen = new Image(); // Crear un nuevo elemento de imagen
-            imagen.src = imageUrl; // Establecer la fuente de la imagen
+            const blob = await response.blob();
+            const imageUrl = URL.createObjectURL(blob);
+            const ventanaEmergente = window.open("", "Imagen", "width=500,height=500");
+            const imagen = new Image();
+            imagen.src = imageUrl;
             imagen.onload = function() {
-                ventanaEmergente.document.body.appendChild(imagen); // Agregar la imagen al cuerpo de la ventana emergente cuando se cargue completamente
+                ventanaEmergente.document.body.appendChild(imagen);
             };
         } else {
             console.log('La imagen no se encontró o no se pudo cargar.');
@@ -225,14 +225,12 @@ async function verWordCloud() {
 
 async function mostrarAudio() {
     try {
-        const url = 'audio_generado.mp3'; // Ruta fija del archivo de audio
+        const url = 'audio_generado.mp3';
         const audio = new Audio(url);
 
-        // Mostrar ventana emergente
         const confirmacion = confirm('¿Desea reproducir el audio?');
 
         if (confirmacion) {
-            // Reproducir audio
             audio.play();
         } else {
             console.log('El usuario canceló la reproducción.');
@@ -288,7 +286,7 @@ async function mostrarRespuestaPalabrasClave() {
 }
 
 async function enviarPDF() {
-    var textoSelect= "yerelynmoralesmora@gmail.com";
+    var textoSelect= localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/PDF/enviarPDFCorreo';
     console.log('URL de la solicitud:', url);
     var datos = {

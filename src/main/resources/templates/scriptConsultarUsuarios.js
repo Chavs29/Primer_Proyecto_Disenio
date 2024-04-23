@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tablaUsuarios = document.getElementById('tablaUsuarios');
 
-    fetch('http://localhost:9090/api/v1/Tematica/lista')
+    fetch('http://localhost:9090/api/v1/Usuario/list')
         .then(response => response.json())
         .then(data => {
             const tbody = document.getElementById('tbodyUsuarios');
@@ -24,5 +24,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function obtenerImagen(fotoBinaria, elementoImagen) {
-    elementoImagen.src = `data:image/jpeg;base64, ${fotoBinaria}`;
+    elementoImagen.src = data:image/jpeg;base64, ${fotoBinaria};
 }
