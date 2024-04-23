@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/Usuario")
@@ -22,7 +24,13 @@ public class UsuarioController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Usuario>> list(){
-        var result = iUsuarioService.getUsuarios();
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        List<Usuario> usuarios = iUsuarioService.getUsuarios();
+
+        // Ordena la lista de usuarios alfabéticamente por el nombre
+        List<Usuario> usuariosOrdenados = usuarios.stream()
+                .sorted(Comparator.comparing(Usuario::getNombreCompleto))
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(usuariosOrdenados, HttpStatus.OK);
     }
 }

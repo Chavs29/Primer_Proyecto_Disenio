@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/Tematica")
@@ -46,7 +48,12 @@ public class TematicaController {
     @GetMapping("/lista")
     public ResponseEntity<List<Tematica>> obtenerTodasTematicas(String correo) {
         List<Tematica> tematicas = tematicaService.obtenerTodasLasTematicas(correo);
-        return new ResponseEntity<>(tematicas, HttpStatus.OK);
+
+        // Ordena la lista de temáticas alfabéticamente por el nombre
+        List<Tematica> tematicasOrdenadas = tematicas.stream()
+                .sorted(Comparator.comparing(Tematica::getNombre))
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(tematicasOrdenadas, HttpStatus.OK);
     }
     @PostMapping("/consultaChatGPT")
     public ServiceResponse consultarChatGPT(@RequestBody Map<String, String> body) {
@@ -59,6 +66,16 @@ public class TematicaController {
         response.setSuccess(true);
         response.setMessage(respuesta);
         return response;
+    }
+
+    @PostMapping("/guardarDatos")
+    public ServiceResponse guardarDatos(@RequestBody Map<String, String> body) {
+        String texto = "Datos del texto:"+"\n"+"Id:" + body.get("id")+ "\n"+"Tematica:"+body.get("tematica")+ "\n"+"Fecha de Registro:"+body.get("fechaRegistro")+ "\n"+"Cantidad de palabras:"+body.get("cantPalabras")+ "\n"+"Contenido:"+body.get("contenido");
+
+        guardarRespuestaEnArchivo(texto, "datosTexto.txt");
+        ServiceResponse response = new ServiceResponse();
+        response.setSuccess(true);
+        response.setMessage(texto);        return response;
     }
 
     private void guardarRespuestaEnArchivo(String respuesta, String nombreArchivo) {

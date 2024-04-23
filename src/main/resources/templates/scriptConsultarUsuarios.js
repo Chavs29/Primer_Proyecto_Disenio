@@ -24,5 +24,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function obtenerImagen(fotoBinaria, elementoImagen) {
-    elementoImagen.src = data:image/jpeg;base64, ${fotoBinaria};
+    elementoImagen.src = `data:image/jpeg;base64, ${fotoBinaria}`;
 }

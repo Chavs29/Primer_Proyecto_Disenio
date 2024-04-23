@@ -22,7 +22,6 @@ ul li a:hover{
   width: 100%;
   height: 100px;
   padding: 0;
-  margin: none;
   background-color: #35403A; /*color del fondo del cuadro*/
   color: black; /*color del texto del cuadro*/
   text-decoration: none; 
@@ -50,8 +49,8 @@ form{
     color: black; /*color del texto del cuadro*/
     padding: 20px;
     display: block;
-    margin-bottom: 10px; 
-    font-size:  20px;
+    margin-bottom: 10px;
+    font-size:  15px;
 }
 .datos label{
     background-color: #BFBFB8;

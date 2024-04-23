@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const tablaTematicas = document.getElementById('tablaTematicas');
-    const correoT = localStorage.getItem('correoo');
-    fetch('http://localhost:9090/api/v1/Tematica/lista?correo='+ correoT)
+    const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
+    const url = `http://localhost:9090/api/v1/Tematica/lista?correo=${correo}`;
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             const tbody = document.getElementById('tbodyTematica');
@@ -11,11 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>${tematica.id}</td>
                     <td>${tematica.nombre}</td>
                     <td>${tematica.descripcion}</td>
-                    <td><img class="fotoTematicas" src="" alt="Foto de Tematicas"></td>
+                    <td><img class="fotoTematica" src="" alt="Foto de temática"></td>
                 `;
                 tbody.appendChild(tr);
-                const fotoTematicas = tr.querySelector('.fotoTematica');
-                obtenerImagen(tematica.foto, fotoTematica);
+                const fotoTematica = tr.querySelector('.fotoTematica');
+                obtenerImagen(tematica.imagen, fotoTematica);
             });
         })
         .catch(error => console.error('Error:', error));

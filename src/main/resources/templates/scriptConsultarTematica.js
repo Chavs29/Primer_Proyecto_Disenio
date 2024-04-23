@@ -1,6 +1,5 @@
 let listaTextos = [];
 document.addEventListener('DOMContentLoaded', function() {
-    // Llenar las opciones al cargar el DOM
     const opciones = document.getElementById('opciones');
     const correo = localStorage.getItem('correoo'); // Obtener el correo de localStorage
     const url = `http://localhost:9090/api/v1/Tematica/lista?correo=${correo}`;
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error:', error));
     });
 
-// Función para cargar los textos
 function cargarTextos() {
     opciones.addEventListener('change', function() {
         const tematicaId = obtenerTextoSeleccionado2();
@@ -31,8 +29,9 @@ function cargarTextos() {
                 opcionesTexto.innerHTML = '';
                 textosData.forEach(texto => {
                     const option = document.createElement('option');
-                    option.text = texto.contenido; // Cambiar por el campo correcto del texto
-                    option.value = texto.id; // Cambiar por el campo correcto del ID del texto
+                    const primeras30Palabras = obtenerPrimeras30Palabras(texto.contenido);
+                    option.text = primeras30Palabras;
+                    option.value = texto.id;
                     opcionesTexto.appendChild(option);
                 });
             })
@@ -41,19 +40,13 @@ function cargarTextos() {
 
 }
 
-function cargarTextoDatos() {
-    opciones.addEventListener('change', function() {
-        const textoId = "Realizar pruebas de frontend es altamente efectivo para xxxx";
-        const textosUrl = `http://localhost:9090/api/v1/Texto/texto?id=` + textoId;
-
-        fetch(textosUrl)
-            .then(response => response.json())
-            .then(texto => {
-                rellenarFormulario(texto);
-            })
-            .catch(error => console.error('Error:', error));
-    });
+function obtenerPrimeras30Palabras(texto) {
+    const palabras = texto.split(' ');
+    const primeras30Palabras = palabras.slice(0, 30);
+    return primeras30Palabras.join(' ');
 }
+
+
 
 
 function obtenerTextosYActualizarFormulario(textoSeleccionado) {
@@ -83,6 +76,42 @@ function obtenerTextosYActualizarFormulario(textoSeleccionado) {
 }
 
 
+function guardarDatosEnServidor() {
+    // Obtener los valores de los campos del formulario
+    var id = document.getElementById('id').value;
+    var tematica = document.getElementById('tematica').value;
+    var fecha = document.getElementById('fecha').value;
+    var cantPalabras = document.getElementById('cant').value;
+    var contenido = document.getElementById('cont').value;
+
+    // Crear un objeto con los datos del formulario
+    var datos = {
+        "id": id,
+        "tematica": tematica,
+        "fechaRegistro": fecha,
+        "cantPalabras": cantPalabras,
+        "contenido": contenido
+    };
+
+    // Realizar la solicitud HTTP POST al endpoint /guardarDatos
+    fetch('http://localhost:9090/api/v1/Tematica/guardarDatos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Manejar la respuesta del servidor si es necesario
+            console.log(data);
+            // Por ejemplo, podrías mostrar un mensaje de éxito o error
+        })
+        .catch(error => {
+            // Manejar errores si la solicitud falla
+            console.error('Error:', error);
+        });
+}
 
 
 function obtenerTextoSeleccionado() {
@@ -122,7 +151,7 @@ async function consultarChatGPT() {
 
 async function consultarSentimiento() {
     console.log('Consultar ChatGPT clicado');
-    var textoSelect= obtenerTextoSeleccionado();
+    var textoSelect= document.getElementById('cont').value;
     var url = 'http://localhost:9090/api/v1/Tematica/consultaSentimiento';
     console.log('URL de la solicitud:', url);
     var datos = {
@@ -144,7 +173,7 @@ async function consultarSentimiento() {
 
 async function generarPalabrasClave() {
     console.log('Consultar ChatGPT clicado');
-    var textoSelect= obtenerTextoSeleccionado();
+    var textoSelect= document.getElementById('cont').value;
     var url = 'http://localhost:9090/api/v1/Tematica/consultaPalabrasClave';
     console.log('URL de la solicitud:', url);
     var datos = {
@@ -165,7 +194,7 @@ async function generarPalabrasClave() {
 }
 
 async function generarWordCloud() {
-    var textoSelect= obtenerTextoSeleccionado();
+    var textoSelect= document.getElementById('cont').value;
     var url = 'http://localhost:9090/api/v1/WordCloud/generar';
     console.log('URL de la solicitud:', url);
     var datos = {
@@ -185,7 +214,7 @@ async function generarWordCloud() {
 }
 
 async function generarAudio() {
-    var textoSelect= obtenerTextoSeleccionado();
+    var textoSelect= document.getElementById('cont').value;
     var url = 'http://localhost:9090/api/v1/Audio/generar';
     console.log('URL de la solicitud:', url);
     var datos = {

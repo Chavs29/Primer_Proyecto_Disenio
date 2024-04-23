@@ -40,27 +40,27 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="id">Id:</label><br>
-                    <textarea id="id" name="id_txt" rows="2" cols="40"></textarea>
+                    <textarea id="id" name="id_txt" rows="2" cols="40" readonly></textarea>
                 </div>
                 <div class="form-group">
                     <label for="tematica">Temática asociada:</label><br>
-                    <textarea id="tematica" name="tem_txt" rows="2" cols="40"></textarea>
+                    <textarea id="tematica" name="tem_txt" rows="2" cols="40" readonly></textarea>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="fecha">Fecha de registro:</label><br>
-                    <textarea id="fecha" name="fecha_txt" rows="2" cols="40"></textarea>
+                    <textarea id="fecha" name="fecha_txt" rows="2" cols="40" readonly></textarea>
                 </div>
                 <div class="form-group">
                     <label for="cant">Cantidad de palabras:</label><br>
-                    <textarea id="cant" name="cant_txt" rows="2" cols="40"></textarea>
+                    <textarea id="cant" name="cant_txt" rows="2" cols="40" readonly></textarea>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="cont">Contenido:</label><br>
-                    <textarea id="cont" name="contenido_txt" rows="4" cols="40"></textarea>
+                    <textarea id="cont" name="contenido_txt" rows="4" cols="40" readonly></textarea>
                 </div>
 
             </div>
@@ -74,7 +74,7 @@
         <button onclick="generarPalabrasClave()">Generar palabras clave</button>
         <button onclick="generarWordCloud()">Generar WordCloud</button>
         <button onclick="mostrarRespuestaPalabrasClave()">Ver Palabras Clave</button>
-        <button onclick="verWordCloud()">Ver WordCloud</button>
+        <button onclick="verWordCloud();guardarDatosEnServidor()">Ver WordCloud</button>
         <button onclick="generarAudio()">Generar audios</button>
         <button onclick="enviarPDF()">Enviar PDF</button>
         <button onclick="mostrarAudio()">Reproducir audio</button>

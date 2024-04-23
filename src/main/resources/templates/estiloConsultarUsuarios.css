@@ -67,8 +67,13 @@ tbody tr:hover{
     background: #A4A69C;
 }
 
-/* Establecer un tamaño máximo para las imágenes de usuario */
+
 .fotoUsuario {
-    max-width: 100px; /* Define el ancho máximo */
-    max-height: 100px; /* Define el alto máximo */
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.fotoTematica{
+    max-width: 200px;
+    max-height: 200px;
 }

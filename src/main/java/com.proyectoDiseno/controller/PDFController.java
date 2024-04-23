@@ -27,7 +27,7 @@ public class PDFController {
 
         String rutaProyecto = System.getProperty("user.dir");
 
-        String[] filesNames = {rutaProyecto + "/src/main/resources/templates/respuestaChatGPT.txt", rutaProyecto + "/src/main/resources/templates/respuestaPalabrasClave.txt",rutaProyecto + "/src/main/resources/templates/respuestaSentimiento.txt"};
+        String[] filesNames = {rutaProyecto + "/src/main/resources/templates/respuestaChatGPT.txt", rutaProyecto + "/src/main/resources/templates/respuestaPalabrasClave.txt",rutaProyecto + "/src/main/resources/templates/respuestaSentimiento.txt",rutaProyecto + "/src/main/resources/templates/datosTexto.txt"};
         ArrayList<String> data = gestionarArchivosService.leerTxt(filesNames);
         byte[] pdfBytes = crearPDFService.crearPDF(data);
         String asunto = "Datos de Inteligencias JIMAYE";

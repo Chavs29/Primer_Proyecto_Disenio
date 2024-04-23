@@ -17,7 +17,6 @@ public class GestionarArchivos {
         PREFIX_MAP.put(0, line -> "Respuesta chatGPT: " + line);
         PREFIX_MAP.put(1, line -> "Palabras clave: " + line);
         PREFIX_MAP.put(2, line -> "Sentimiento según Stanford: " + line);
-        PREFIX_MAP.put(3, line -> "Datos del texto: " + line);
     }
 
     public static ArrayList<String> leerTxtFiles(String[] fileNames) {
@@ -25,7 +24,7 @@ public class GestionarArchivos {
 
         for (int i = 0; i < fileNames.length; i++) {
             String fileName = fileNames[i];
-            Function<String, String> prefixFunction = PREFIX_MAP.getOrDefault(i, line -> "Archivo desconocido: " + line);
+            Function<String, String> prefixFunction = PREFIX_MAP.getOrDefault(i, line -> "" + line);
             dataList.addAll(leerArchivoConPrefijo(fileName, prefixFunction));
         }
         return dataList;
