@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const tablaUsuarios = document.getElementById('tablaUsuarios');
+    const tablaUsuarios = document.getElementById('tablaTematicas');
 
-    fetch('http://localhost:9090/api/v1/Tematica/lista')
+    fetch('http://localhost:9090/api/v1/Usuario/list')
         .then(response => response.json())
         .then(data => {
             const tbody = document.getElementById('tbodyUsuarios');
@@ -9,14 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${usuario.id}</td>
-                    <td>${usuario.identificacion}</td>
-                    <td>${usuario.nombre_completo}</td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.numero_telefono}</td>
-                    <td><img class="fotoUsuario" src="" alt="Foto de usuario"></td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.descripcion}</td>
+                    <td><img class="fotoTematicas" src="" alt="Foto de Tematicas"></td>
                 `;
                 tbody.appendChild(tr);
-                const fotoUsuario = tr.querySelector('.fotoUsuario');
+                const fotoTematicas = tr.querySelector('.fotoUsuario');
                 obtenerImagen(usuario.foto, fotoUsuario);
             });
         })

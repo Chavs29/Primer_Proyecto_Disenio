@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Registrar una tematica</title>
+    <title>Consultas con temáticas y textos</title>
     <link rel="stylesheet" href="estiloConsultarTematica.css">
     <script src="scriptConsultarTematica.js"></script>
 </head>
 <body>
 <form id="formularioRegistro">
     <div class="cuadroTitulo">
-        <h1>Consultar temáticas y textos</h1>
+        <h1>Consultas con temáticas y textos</h1>
         <ul>
             <li><a href="registrarTexto.html">Registrar texto</a></li>
             <li><a href="registrarTematica.html">Registar temática</a></li>
+            <li><a href="datosTematicas.html">Consultar temática</a></li>
             <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
             <li><a href="menu.html">Menú principal</a></li>
         </ul>
@@ -25,8 +26,9 @@
         </select>
 
         <label for="opcionesTexto">Seleccione el texto correspondiente a la temática seleccionada:</label>
-        <select id="opcionesTexto">
+        <select id="opcionesTexto" onchange="obtenerTextosYActualizarFormulario(this.value)">
         </select>
+
     </div>
     <div class="txt">
         <label> Datos asociados al texto seleccionado: </label>

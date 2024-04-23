@@ -1,3 +1,4 @@
+let listaTextos = [];
 document.addEventListener('DOMContentLoaded', function() {
     // Llenar las opciones al cargar el DOM
     const opciones = document.getElementById('opciones');
@@ -54,14 +55,34 @@ function cargarTextoDatos() {
     });
 }
 
-// Función para rellenar el formulario con los datos del texto seleccionado
-function rellenarFormulario(texto) {
-    document.getElementById('id').value = texto.id; // Cambiar por el campo correcto del ID del texto
-    document.getElementById('tematica').value = obtenerTextoSeleccionado2(); // Cambiar por el campo correcto de la temática
-    document.getElementById('fecha').value = texto.fechaRegistro; // Cambiar por el campo correcto de la fecha
-    document.getElementById('cant').value = texto.cantidadPalabras; // Cambiar por el campo correcto de la cantidad de palabras
-    document.getElementById('cont').value = texto.contenido; // Cambiar por el campo correcto del contenido
+
+function obtenerTextosYActualizarFormulario(textoSeleccionado) {
+    console.log('Función ejecutada con valor:', textoSeleccionado);
+    const idSeleccionado = parseInt(textoSeleccionado, 10);
+
+    fetch('http://localhost:9090/api/v1/Texto/todos')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud de datos.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const textoEncontrado = data.find(texto => texto.id === idSeleccionado);
+        if (textoEncontrado) {
+            document.getElementById('id').value = textoEncontrado.id;
+            document.getElementById('tematica').value = obtenerTextoSeleccionado2();
+            document.getElementById('fecha').value = textoEncontrado.fechaRegistro;
+            document.getElementById('cant').value = textoEncontrado.cantidadPalabras;
+            document.getElementById('cont').value = textoEncontrado.contenido;
+        } else {
+            console.error('El texto seleccionado no se encontró en los datos obtenidos.');
+        }
+    })
+    .catch(error => console.error('Error al obtener textos:', error));
 }
+
+
 
 
 function obtenerTextoSeleccionado() {
@@ -266,6 +287,28 @@ async function mostrarRespuestaPalabrasClave() {
     }
 }
 
+async function enviarPDF() {
+    var textoSelect= "yerelynmoralesmora@gmail.com";
+    var url = 'http://localhost:9090/api/v1/PDF/enviarPDFCorreo';
+    console.log('URL de la solicitud:', url);
+    var datos = {
+        texto: textoSelect
+    }
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+}
 
 function mostrarResultado(resultado) {
     const ventanaEmergente = window.open('', '_blank', 'width=600,height=400');
