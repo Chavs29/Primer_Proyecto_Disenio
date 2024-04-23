@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Registrar una tematica</title>
+    <title>Consultas con temáticas y textos</title>
     <link rel="stylesheet" href="estiloConsultarTematica.css">
     <script src="scriptConsultarTematica.js"></script>
 </head>
 <body>
 <form id="formularioRegistro">
     <div class="cuadroTitulo">
-        <h1>Consultar temáticas y textos</h1>
+        <h1>Consultas con temáticas y textos</h1>
         <ul>
             <li><a href="registrarTexto.html">Registrar texto</a></li>
             <li><a href="registrarTematica.html">Registar temática</a></li>
+            <li><a href="datosTematicas.html">Consultar temática</a></li>
             <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
             <li><a href="menu.html">Menú principal</a></li>
         </ul>
@@ -25,19 +26,59 @@
         </select>
 
         <label for="opcionesTexto">Seleccione el texto correspondiente a la temática seleccionada:</label>
-        <select id="opcionesTexto">
+        <select id="opcionesTexto" onchange="obtenerTextosYActualizarFormulario(this.value)">
         </select>
+
+    </div>
+    <div class="txt">
+        <label> Datos asociados al texto seleccionado: </label>
+    </div>
+
+
+    <div class="container">
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id">Id:</label><br>
+                    <textarea id="id" name="id_txt" rows="2" cols="40" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tematica">Temática asociada:</label><br>
+                    <textarea id="tematica" name="tem_txt" rows="2" cols="40" readonly></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fecha">Fecha de registro:</label><br>
+                    <textarea id="fecha" name="fecha_txt" rows="2" cols="40" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="cant">Cantidad de palabras:</label><br>
+                    <textarea id="cant" name="cant_txt" rows="2" cols="40" readonly></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cont">Contenido:</label><br>
+                    <textarea id="cont" name="contenido_txt" rows="4" cols="40" readonly></textarea>
+                </div>
+
+            </div>
+        </form>
     </div>
     <div class="botones">
-        <button onclick="generarAudios()">Generar audios</button>
-        <button onclick="consultarChatGPT()">Consultar ChatGPT</button>
-        <button onclick="consultarSentimiento()">Consultar Sentimiento</button>
-        <button onclick="generarPalabrasClave()">Generar palabras clave</button>
-        <button onclick="enviarPDF()">Enviar PDF</button>
-        <button onclick="generarWordCloud()">Generar WordCloud</button>
+        <button onclick="consultarChatGPT()">Generar ChatGPT</button>
+        <button onclick="consultarSentimiento()">Generar Sentimiento</button>
         <button onclick="mostrarRespuestaChatGPT()">Ver Chat GPT</button>
         <button onclick="mostrarRespuestaSentimiento()">Ver Sentimiento</button>
+        <button onclick="generarPalabrasClave()">Generar palabras clave</button>
+        <button onclick="generarWordCloud()">Generar WordCloud</button>
         <button onclick="mostrarRespuestaPalabrasClave()">Ver Palabras Clave</button>
+        <button onclick="verWordCloud();guardarDatosEnServidor()">Ver WordCloud</button>
+        <button onclick="generarAudio()">Generar audios</button>
+        <button onclick="enviarPDF()">Enviar PDF</button>
+        <button onclick="mostrarAudio()">Reproducir audio</button>
+
     </div>
     <div><script src="scriptConsultarTematica.js"></script></div>
 </form>

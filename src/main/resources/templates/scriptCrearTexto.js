@@ -17,22 +17,24 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error:', error));
 
     // Enviar el formulario al hacer submit
-    const formularioRegistroTexto = document.getElementById('formularioRegistroTexto');
-    if (formularioRegistroTexto) {
-        formularioRegistroTexto.addEventListener('submit', function(event) {
+    const form = document.getElementById('formRegistroTexto');
+    if (form) {
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const temaSeleccionado = document.getElementById('opciones').value;
-            const texto = document.getElementById('textoTematica').value;
+            const temaSeleccionado = obtenerTextoSeleccionado(); // Aquí puedes obtener la temática seleccionada si lo necesitas
+            const contenido = document.getElementById('contenido').value;
 
-            const formData = new FormData();
-            formData.append('contenido', texto);
-            formData.append('nombre', temaSeleccionado);
+            const requestData = {
+                contenido: contenido,
+                nombre: temaSeleccionado
+            };
 
             fetch('http://localhost:9090/api/v1/Texto/crear', {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify(requestData), // Convertir datos a formato JSON
                 headers: {
+                    'Content-Type': 'application/json', // Usar application/json
                     'Accept': 'application/json',
                 }
             })
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log(data);
                     if (data.success) {
                         alert('Texto registrado exitosamente.');
-                        formularioRegistroTexto.reset();
+                        form.reset();
                     } else {
                         alert('Error al registrar el Texto: ' + data.message);
                     }
@@ -49,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => console.error('Error:', error));
         });
     } else {
-        console.error('Elemento formularioRegistroTexto no encontrado en el DOM.');
+        console.error('Elemento form no encontrado en el DOM.');
+    }
+
+    function obtenerTextoSeleccionado() {
+        var opcionesTexto = document.getElementById("opciones");
+        var textoSeleccionado = opciones.options[opcionesTexto.selectedIndex].text;
+        return textoSeleccionado;
     }
 });
