@@ -37,10 +37,8 @@ public class Autenticar {
     }
 
     public static void crearQR(String codigoDatos) throws WriterException, IOException {
-        // Ruta relativa dentro del proyecto donde se guardará la imagen del código QR
         String rutaRelativa = "src/main/resources/templates/codigo.png";
 
-        // Obtener la ruta absoluta del proyecto
         String rutaProyecto = System.getProperty("user.dir");
         String rutaCompleta = rutaProyecto + File.separator + rutaRelativa;
 
