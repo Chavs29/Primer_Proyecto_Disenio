@@ -9,10 +9,16 @@ public class Texto implements ITexto{
     private String contenido;
     private Date fechaRegistro;
     private int cantidadPalabras;
-    private Tematica tematica; // Relación con Tematica
+    private Tematica tematica;
 
     public Texto() {
 
+    }
+
+    public Texto(String contenido, String nombre) {
+        this.contenido = contenido;
+        this.fechaRegistro = new Date(); // Fecha actual
+        this.cantidadPalabras = contarPalabras(contenido);
     }
 
     public Texto(String contenido, Tematica tematica) {
@@ -22,13 +28,6 @@ public class Texto implements ITexto{
         this.cantidadPalabras = contarPalabras(contenido);
     }
 
-    public Texto(String contenido, String nombre) {
-        this.contenido = contenido;
-        this.fechaRegistro = new Date(); // Fecha actual
-        this.cantidadPalabras = contarPalabras(contenido);
-    }
-
-    // Método para contar palabras en el texto
     private int contarPalabras(String texto) {
         if (texto == null || texto.isEmpty()) {
             return 0;
