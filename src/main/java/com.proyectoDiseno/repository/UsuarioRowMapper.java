@@ -14,7 +14,6 @@ public class UsuarioRowMapper implements RowMapper<Usuario> {
         usuario.setNombreCompleto(rs.getString("nombre_completo"));
         usuario.setEmail(rs.getString("email"));
         usuario.setNumeroTelefono(rs.getString("numero_telefono"));
-        // Si la foto es de tipo BLOB o VARBINARY, deberías manejarla aquí
         usuario.setFoto(rs.getBytes("foto"));
         return usuario;
     }

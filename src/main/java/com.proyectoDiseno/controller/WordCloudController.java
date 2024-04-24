@@ -14,8 +14,8 @@ public class WordCloudController {
     @Autowired
     private WordCloudService wordCloudService;
 
-    @PostMapping("/generar") // Cambiado a @PostMapping
-    public ResponseEntity<String> generarCodigoQR(@RequestBody Map<String, String> body) {
+    @PostMapping("/generar")
+    public ResponseEntity<String> generarWordCloud(@RequestBody Map<String, String> body) {
         String resultado = wordCloudService.generarWordCloud(body.get("texto"));
         return ResponseEntity.ok(resultado);
     }

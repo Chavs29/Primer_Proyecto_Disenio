@@ -22,7 +22,7 @@ public class PDFController {
     @Autowired
     private EnviarCorreoService enviarCorreoService;
 
-    @PostMapping("/enviarPDFCorreo") // Cambiado a @PostMapping
+    @PostMapping("/enviarPDFCorreo")
     public ResponseEntity<String> generarPDF(@RequestBody Map<String, String> body) {
 
         String rutaProyecto = System.getProperty("user.dir");
