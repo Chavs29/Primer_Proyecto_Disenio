@@ -1,0 +1,1 @@
+A relational database is a type of database that stores data in multiple tables, which can then be combined using common fields to create meaningful relationships between the tables. This makes the database flexible and allows for complex queries to be executed on the data. Overall, relational databases provide a structured way to store and retrieve data efficiently.

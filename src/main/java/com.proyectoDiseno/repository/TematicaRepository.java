@@ -13,7 +13,6 @@ public class TematicaRepository implements ITematicaRepository {
 
     @Override
     public List<Tematica> findAll(String correo) {
-        // Implementa la lógica para obtener todas las temáticas asociadas a un correo específico desde la base de datos
         String SQL = "SELECT * FROM Tematicas WHERE emailUsuario = ?";
         return jdbcTemplate.query(SQL, new Object[]{correo}, new TematicaRowMapper());
     }
