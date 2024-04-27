@@ -1,7 +1,9 @@
 package com.proyectoDiseno.controller;
 
 import com.proyectoDiseno.model.ServiceResponse;
+import com.proyectoDiseno.service.ConexionService;
 import com.proyectoDiseno.servicios_externos.ConexionIA;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +16,13 @@ import java.util.Map;
 @RequestMapping("api/v1/Consultas")
 @CrossOrigin(origins = {"http://localhost:9090", "http://127.0.0.1:5500"})
 public class ConsultasExternasController {
+    @Autowired
+    private ConexionService conexionIA;
 
     @PostMapping("/consultaChatGPT")
     public ServiceResponse consultarChatGPT(@RequestBody Map<String, String> body) {
         String texto = body.get("texto");
-        String respuesta = ConexionIA.chatGPT(texto);
+        String respuesta = conexionIA.generarConexionIA(texto);
 
         guardarRespuestaEnArchivo(respuesta, "respuestaChatGPT.txt");
 
@@ -44,7 +48,7 @@ public class ConsultasExternasController {
         try {
             String texto = (String) requestBody.get("texto");
             String pregunta = "Cuáles son las palabra clave en el texto, hazlo solamente separados por comas: " + texto;
-            String respuesta = ConexionIA.chatGPT(pregunta);
+            String respuesta = conexionIA.generarConexionIA(pregunta);
             guardarRespuestaEnArchivo(respuesta, "respuestaPalabrasClave.txt");
             response.setSuccess(true);
             response.setMessage(respuesta);
@@ -62,7 +66,7 @@ public class ConsultasExternasController {
         try {
             String texto = (String) requestBody.get("texto");
             String pregunta = "Cual es el sentimiento de stanford del texto:" + texto + "Simplemente dame el sentimiento, no digas nada mas(positivo, negativo o neutral).";
-            String respuesta = ConexionIA.chatGPT(pregunta);
+            String respuesta = conexionIA.generarConexionIA(pregunta);
 
             guardarRespuestaEnArchivo(respuesta, "respuestaSentimiento.txt");
             response.setSuccess(true);

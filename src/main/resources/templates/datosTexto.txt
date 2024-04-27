@@ -1,0 +1,6 @@
+Datos del texto:
+Id:9
+Tematica:Ciencias
+Fecha de Registro:2024-04-24
+Cantidad de palabras:54
+Contenido:En matemática, una serie es la generalización de la noción de suma, aplicada a los infinitos términos de una sucesión, lo que suele escribirse con el símbolo de sumatorio: donde es el «término general» de la sucesión, que usualmente se expresa por medio de un regla, o se obtiene a partir de un algoritmo.
