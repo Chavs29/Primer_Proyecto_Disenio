@@ -20,7 +20,7 @@ document.getElementById("formularioCorreo").addEventListener("submit", async fun
             alert("El correo existe en la base de datos.");
             // Redirigir a IniciarSesion.html si el correo existe
             generarCodigoQR(correo1);
-            window.location.href = "IniciarSesion.html";
+            window.location.href = "faceRecognition.html";
         } else {
             alert("El correo no existe en la base de datos.");
         }

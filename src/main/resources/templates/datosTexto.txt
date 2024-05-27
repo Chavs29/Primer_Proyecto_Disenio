@@ -1,6 +1,6 @@
 Datos del texto:
-Id:9
-Tematica:Ciencias
-Fecha de Registro:2024-04-24
-Cantidad de palabras:54
-Contenido:En matemática, una serie es la generalización de la noción de suma, aplicada a los infinitos términos de una sucesión, lo que suele escribirse con el símbolo de sumatorio: donde es el «término general» de la sucesión, que usualmente se expresa por medio de un regla, o se obtiene a partir de un algoritmo.
+Id:13
+Tematica:Inteligencia Artificial_
+Fecha de Registro:2024-04-27
+Cantidad de palabras:39
+Contenido:La inteligencia artificial imita la capacidad cognitiva humana en sistemas computacionales, revolucionando industrias mediante su habilidad para aprender, adaptarse y efectuar decisiones de manera autónoma. Su impacto es notable en diversos sectores, optimizando procesos y mejorando la eficiencia operativa.

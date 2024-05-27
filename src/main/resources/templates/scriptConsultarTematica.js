@@ -143,7 +143,7 @@ async function consultarChatGPT() {
 
 async function consultarSentimiento() {
     console.log('Consultar ChatGPT clicado');
-    var textoSelect= document.getElementById('cont').value;
+    var textoSelect= obtenerTextoSeleccionado();
     var url = 'http://localhost:9090/api/v1/Consultas/consultaSentimiento';
     console.log('URL de la solicitud:', url);
     var datos = {
@@ -165,7 +165,7 @@ async function consultarSentimiento() {
 
 async function generarPalabrasClave() {
     console.log('Consultar ChatGPT clicado');
-    var textoSelect= document.getElementById('cont').value;
+    var textoSelect= obtenerTextoSeleccionado();
     var url = 'http://localhost:9090/api/v1/Consultas/consultaPalabrasClave';
     console.log('URL de la solicitud:', url);
     var datos = {
@@ -186,7 +186,7 @@ async function generarPalabrasClave() {
 }
 
 async function generarWordCloud() {
-    var textoSelect= document.getElementById('cont').value;
+    var textoSelect= obtenerTextoSeleccionado();
     var url = 'http://localhost:9090/api/v1/WordCloud/generar';
     console.log('URL de la solicitud:', url);
     var datos = {
