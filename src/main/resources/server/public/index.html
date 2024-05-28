@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Título de la página -->
+    <title>Face Recognition Login</title>
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="faceRecog.css">
+</head>
+<body>
+<!-- Botón para iniciar el proceso de login con reconocimiento facial -->
+<button id="loginButton">Login with Face ID</button>
+<!-- Modal que se muestra cuando se inicia el proceso de login -->
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <!-- Botón para cerrar el modal -->
+        <span id="closeModal" class="close">&times;</span>
+        <!-- Título del modal -->
+        <h2>Think Troop Face ID</h2>
+        <!-- Video donde se mostrará la transmisión de la cámara -->
+        <video id="video" autoplay></video>
+        <!-- Mensaje de error que se mostrará si hay algún problema -->
+        <p id="errorMessage" class="error-message"></p>
+        <!-- Botón para reintentar el proceso de reconocimiento facial -->
+        <button id="retryButton" class="button">Try Again</button>
+    </div>
+</div>
+<!-- Enlace al archivo de scripts Ja
+vaScript -->
+<script type="module" src="faceRecognition.js"></script>
+</body>
+</html>

@@ -9,10 +9,9 @@ public class TematicaRowMapper implements RowMapper<Tematica> {
     @Override
     public Tematica mapRow(ResultSet rs, int rowNum) throws SQLException {
         Tematica tematica = new Tematica();
-        tematica.setId(rs.getLong("id"));
+        tematica.setId(rs.getLong("id_tematica"));
         tematica.setNombre(rs.getString("nombre"));
         tematica.setDescripcion(rs.getString("descripcion"));
-        // Si el campo imagen es de tipo BLOB o VARBINARY, deberías manejarlo aquí
         tematica.setImagen(rs.getBytes("fotoRepresentativa"));
         return tematica;
     }

@@ -6,9 +6,11 @@ import com.proyectoDiseno.service.GestionarArchivosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import static com.proyectoDiseno.validacion_datos.ValidarCorreo.verificacionDeEmail;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 
 @RestController
 @RequestMapping("/api/v1/PDF")
@@ -22,7 +24,7 @@ public class PDFController {
     @Autowired
     private EnviarCorreoService enviarCorreoService;
 
-    @PostMapping("/enviarPDFCorreo") // Cambiado a @PostMapping
+    @PostMapping("/enviarPDFCorreo")
     public ResponseEntity<String> generarPDF(@RequestBody Map<String, String> body) {
 
         String rutaProyecto = System.getProperty("user.dir");
@@ -32,7 +34,13 @@ public class PDFController {
         byte[] pdfBytes = crearPDFService.crearPDF(data);
         String asunto = "Datos de Inteligencias JIMAYE";
         String correo = body.get("texto");
-        System.out.println(correo);
+
+        if (verificacionDeEmail(correo)) {
+            System.out.println("El correo " + correo + " es válido.");
+        } else {
+            System.out.println("El correo " + correo + " es inválido.");
+        }
+
         enviarCorreoService.enviarEmail(correo, asunto, pdfBytes);
         return ResponseEntity.ok("");
     }

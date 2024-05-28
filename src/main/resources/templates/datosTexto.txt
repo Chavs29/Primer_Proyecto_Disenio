@@ -1,6 +1,6 @@
 Datos del texto:
-Id:1
-Tematica:Ciencia de Datos
-Fecha de Registro:2024-04-22
-Cantidad de palabras:44
-Contenido:A cloud database is a database which is optimized or built for such a virtualized environment. There are so many advantages of a cloud database, some of which can pay for storage capacity and bandwidth. It also offers scalability on-demand, along with high availability.
+Id:13
+Tematica:Inteligencia Artificial_
+Fecha de Registro:2024-04-27
+Cantidad de palabras:39
+Contenido:La inteligencia artificial imita la capacidad cognitiva humana en sistemas computacionales, revolucionando industrias mediante su habilidad para aprender, adaptarse y efectuar decisiones de manera autónoma. Su impacto es notable en diversos sectores, optimizando procesos y mejorando la eficiencia operativa.

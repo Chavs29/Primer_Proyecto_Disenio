@@ -49,91 +49,10 @@ public class TematicaController {
     public ResponseEntity<List<Tematica>> obtenerTodasTematicas(String correo) {
         List<Tematica> tematicas = tematicaService.obtenerTodasLasTematicas(correo);
 
-        // Ordena la lista de temáticas alfabéticamente por el nombre
         List<Tematica> tematicasOrdenadas = tematicas.stream()
                 .sorted(Comparator.comparing(Tematica::getNombre))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(tematicasOrdenadas, HttpStatus.OK);
     }
-    @PostMapping("/consultaChatGPT")
-    public ServiceResponse consultarChatGPT(@RequestBody Map<String, String> body) {
-        String texto = body.get("texto");
-        String respuesta = ConexionIA.chatGPT(texto);
-
-        guardarRespuestaEnArchivo(respuesta, "respuestaChatGPT.txt");
-
-        ServiceResponse response = new ServiceResponse();
-        response.setSuccess(true);
-        response.setMessage(respuesta);
-        return response;
-    }
-
-    @PostMapping("/guardarDatos")
-    public ServiceResponse guardarDatos(@RequestBody Map<String, String> body) {
-        String texto = "Datos del texto:"+"\n"+"Id:" + body.get("id")+ "\n"+"Tematica:"+body.get("tematica")+ "\n"+"Fecha de Registro:"+body.get("fechaRegistro")+ "\n"+"Cantidad de palabras:"+body.get("cantPalabras")+ "\n"+"Contenido:"+body.get("contenido");
-
-        guardarRespuestaEnArchivo(texto, "datosTexto.txt");
-        ServiceResponse response = new ServiceResponse();
-        response.setSuccess(true);
-        response.setMessage(texto);        return response;
-    }
-
-    private void guardarRespuestaEnArchivo(String respuesta, String nombreArchivo) {
-        String rutaProyecto = System.getProperty("user.dir");
-
-        String rutaArchivo = rutaProyecto + "/src/main/resources/templates/" + nombreArchivo;
-
-        try {
-            FileWriter escritor = new FileWriter(rutaArchivo);
-            escritor.write(respuesta);
-            escritor.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @PostMapping("/consultaPalabrasClave")
-    public ResponseEntity<ServiceResponse> consultarPalabrasClave(@RequestBody Map<String, Object> requestBody) {
-        ServiceResponse response = new ServiceResponse();
-        try {
-            String texto = (String) requestBody.get("texto");
-            String pregunta = "Cuáles son las palabra clave en el texto, hazlo solamente separados por comas: " + texto;
-            String respuesta = ConexionIA.chatGPT(pregunta);
-            guardarRespuestaEnArchivo(respuesta, "respuestaPalabrasClave.txt");
-            response.setSuccess(true);
-            response.setMessage(respuesta);
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            response.setSuccess(false);
-            response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }
-
-
-    @PostMapping("/consultaSentimiento")
-    public ResponseEntity<ServiceResponse> realizarConsultaSentimiento(@RequestBody Map<String, Object> requestBody) {
-        ServiceResponse response = new ServiceResponse();
-        try {
-            String texto = (String) requestBody.get("texto");
-            String pregunta = "Cual es el sentimiento de stanford del texto:" + texto + "Simplemente dame el sentimiento, no digas nada mas(positivo, negativo o neutral).";
-            String respuesta = ConexionIA.chatGPT(pregunta);
-
-            guardarRespuestaEnArchivo(respuesta, "respuestaSentimiento.txt");
-            response.setSuccess(true);
-            response.setMessage(respuesta);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            response.setSuccess(false);
-            response.setMessage("Error al consultar ChatGPT: " + e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-}
-
-
-
-
 
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnviarCorreoService {
     public String enviarEmail(String destinatario, String asunto, byte[] pdfBytes) {
-        // Verificar la validez del correo electrónico
         boolean correoValido = ValidarCorreo.verificacionDeEmail(destinatario);
 
         if (correoValido) {

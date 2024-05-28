@@ -46,9 +46,6 @@ function obtenerPrimeras30Palabras(texto) {
     return primeras30Palabras.join(' ');
 }
 
-
-
-
 function obtenerTextosYActualizarFormulario(textoSeleccionado) {
     console.log('Función ejecutada con valor:', textoSeleccionado);
     const idSeleccionado = parseInt(textoSeleccionado, 10);
@@ -84,7 +81,6 @@ function guardarDatosEnServidor() {
     var cantPalabras = document.getElementById('cant').value;
     var contenido = document.getElementById('cont').value;
 
-    // Crear un objeto con los datos del formulario
     var datos = {
         "id": id,
         "tematica": tematica,
@@ -93,8 +89,7 @@ function guardarDatosEnServidor() {
         "contenido": contenido
     };
 
-    // Realizar la solicitud HTTP POST al endpoint /guardarDatos
-    fetch('http://localhost:9090/api/v1/Tematica/guardarDatos', {
+    fetch('http://localhost:9090/api/v1/Consultas/guardarDatos', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -103,12 +98,9 @@ function guardarDatosEnServidor() {
     })
         .then(response => response.json())
         .then(data => {
-            // Manejar la respuesta del servidor si es necesario
             console.log(data);
-            // Por ejemplo, podrías mostrar un mensaje de éxito o error
         })
         .catch(error => {
-            // Manejar errores si la solicitud falla
             console.error('Error:', error);
         });
 }
@@ -130,7 +122,7 @@ async function consultarChatGPT() {
     var palabrasClave = localStorage.getItem('palabrasClave');
     console.log('Consultar ChatGPT clicado');
     var textoSelect= palabrasClave;
-    var url = 'http://localhost:9090/api/v1/Tematica/consultaChatGPT';
+    var url = 'http://localhost:9090/api/v1/Consultas/consultaChatGPT';
     console.log('URL de la solicitud:', url);
     var datos = {
         texto: textoSelect
@@ -151,8 +143,8 @@ async function consultarChatGPT() {
 
 async function consultarSentimiento() {
     console.log('Consultar ChatGPT clicado');
-    var textoSelect= document.getElementById('cont').value;
-    var url = 'http://localhost:9090/api/v1/Tematica/consultaSentimiento';
+    var textoSelect= obtenerTextoSeleccionado();
+    var url = 'http://localhost:9090/api/v1/Consultas/consultaSentimiento';
     console.log('URL de la solicitud:', url);
     var datos = {
         texto: textoSelect
@@ -173,8 +165,8 @@ async function consultarSentimiento() {
 
 async function generarPalabrasClave() {
     console.log('Consultar ChatGPT clicado');
-    var textoSelect= document.getElementById('cont').value;
-    var url = 'http://localhost:9090/api/v1/Tematica/consultaPalabrasClave';
+    var textoSelect= obtenerTextoSeleccionado();
+    var url = 'http://localhost:9090/api/v1/Consultas/consultaPalabrasClave';
     console.log('URL de la solicitud:', url);
     var datos = {
         texto: textoSelect
@@ -194,7 +186,7 @@ async function generarPalabrasClave() {
 }
 
 async function generarWordCloud() {
-    var textoSelect= document.getElementById('cont').value;
+    var textoSelect= obtenerTextoSeleccionado();
     var url = 'http://localhost:9090/api/v1/WordCloud/generar';
     console.log('URL de la solicitud:', url);
     var datos = {

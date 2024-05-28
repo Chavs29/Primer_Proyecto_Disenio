@@ -15,7 +15,7 @@ public class AudioController {
     private AudioService audioService;
 
     @PostMapping("/generar")
-    public ResponseEntity<String> generarCodigoQR(@RequestBody Map<String, String> body) {
+    public ResponseEntity<String> generarAudio(@RequestBody Map<String, String> body) {
         String resultado = audioService.generarAudio(body.get("texto"));
         return ResponseEntity.ok(resultado);
     }
