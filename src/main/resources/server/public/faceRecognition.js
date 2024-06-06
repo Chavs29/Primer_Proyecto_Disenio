@@ -53,23 +53,7 @@ async function loadFaceDetectionModel() {
 }
 
 
-/*
-async function obtenerNombreUsuario() {
-    try {
-        const response = await axios.get('http://localhost:8080/proyecto1Diseno/SvUsuario');
-        console.log("Respuesta del servidor:", response.data); // Verificar la respuesta del servidor
-        if (response.status === 200) {
-            const nombre = response.data.nombre;
-            return nombre;
-        } else {
-            throw new Error('Error al obtener el nombre de usuario. Código de estado: ' + response.status);
-        }
-    } catch (error) {
-        console.error('Error al obtener el nombre de usuario:', error);
-        return null;
-    }
-}
-*/
+
 
 async function captureAndCompare() {
     const video = document.getElementById('video');
@@ -119,7 +103,9 @@ async function compareWithStoredImages(capturedDescriptor, base64Image) {
         if (matchFound) {
             console.log("Resultado del match: "+true);
             console.log("ruta: "+matchedImage);
+            escribirBitacora();
             window.location.href = "http://127.0.0.1:5500/src/main/resources/templates/menu.html";
+
             // Espera la respuesta de obtenerNombreUsuario()
             //const nombreUsuario = await obtenerNombreUsuario();
 
@@ -136,22 +122,33 @@ async function compareWithStoredImages(capturedDescriptor, base64Image) {
     }
 }
 
+const correo = localStorage.getItem('correoo');
+async function escribirBitacora() {
+    const datos = {
+        accion: "Inicio de sesión",
+        usuario: "Hola Prueba"
+    };
 
-
-/*
-async function sendResponseToBackEnd(response) {
     try {
-        const res = await axios.post('http://localhost:8080/proyecto1Diseno/SvFacialRecognition', response);
-        if (res.status === 200) {
+        const response = await fetch('http://localhost:9090/api/v1/bitacora/escribir', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        });
 
-            const data = res.data;
-            const redirectUrl = data.redirectUrl;
+        if (!response.ok) {
+            throw new Error('Error al realizar la solicitud: ' + response.statusText);
         }
+
+        const data = await response.text(); // Si el controlador devuelve un string
+        console.log(data); // Manejar la respuesta del backend
     } catch (error) {
-        console.error('Error during authentication:', error);
+        console.error('Error:', error);
     }
 }
-*/
+
 
 function stopVideoStream() {
     const video = document.getElementById('video');

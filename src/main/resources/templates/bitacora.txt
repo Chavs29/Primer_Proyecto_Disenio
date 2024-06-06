@@ -1,0 +1,5 @@
+ID | Fecha y hora | IP | Sistema Operativo | Pais | Acción | Usuario 
+1 | 2024-06-06 03:20:31 | 177.93.4.109 | Windows 11 | Costa Rica | Consulta a ChatGPT | jimecsol@gmail.com
+2 | 2024-06-06 05:20:47 | 177.93.4.109 | Windows 11 | Costa Rica | Consulta de Sentimiento Stanford | jimecsol@gmail.com
+3 | 2024-06-06 05:21:04 | 177.93.4.109 | Windows 11 | Costa Rica | Consulta de Palabras Clave | jimecsol@gmail.com
+4 | 2024-06-06 08:21:04 | 177.93.4.109 | Windows 11 | Costa Rica | Consulta de Palabras Clave | marcochaves0229@gmail.com

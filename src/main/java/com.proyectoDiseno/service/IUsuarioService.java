@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IUsuarioService {
     public List<Usuario> getUsuarios();
+    public List<Usuario> getUsuario(String correo);
 }
+

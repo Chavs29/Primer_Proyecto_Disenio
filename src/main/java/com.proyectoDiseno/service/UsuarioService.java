@@ -22,4 +22,16 @@ public class UsuarioService implements IUsuarioService{
         }
         return lista;
     }
+    @Override
+    public List<Usuario> getUsuario(String correo) {
+        List<Usuario> lista ;
+        try {
+            lista = iUsuarioRepository.findUsuario(correo);
+        }
+        catch (Exception ex) {
+            throw ex;
+        }
+        return lista;
+    }
+
 }

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public class UsuarioRepository implements IUsuarioRepository{
-@Autowired
-private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<Usuario> getUsuarios() {
@@ -20,7 +20,11 @@ private JdbcTemplate jdbcTemplate;
         return jdbcTemplate.query(SQL, new UsuarioRowMapper());
 
     }
-
+    @Override
+    public List<Usuario> findUsuario(String correo) {
+        String SQL = "SELECT * FROM Usuarios WHERE email = ?";
+        return jdbcTemplate.query(SQL, new Object[]{correo}, new UsuarioRowMapper());
+    }
     public int save (Usuario usuario) {
         return 0;
     }

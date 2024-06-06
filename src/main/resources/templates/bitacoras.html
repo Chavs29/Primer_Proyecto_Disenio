@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Consultar bitácoras</title>
+    <link rel="stylesheet" href="estiloBitacoras.css">
+</head>
+<body>
+<form>
+    <div class="cuadroTitulo">
+        <h1>Consultar bitácoras</h1>
+        <ul>
+            <li><a href="registrarTematica.html">Registrar temática</a></li>
+            <li><a href="consultarTematica.html">Consultas con temática</a></li>
+            <li><a href="datosTematicas.html">Consultar temática</a></li>
+            <li><a href="consultarUsuarios.html">Consultar usuarios</a></li>
+            <li><a href="registrarTexto.html">Registrar texto</a></li>
+            <li><a href="menu.html">Menú principal</a></li>
+        </ul>
+    </div>
+</form>
+<form>
+    <label for="format-select2">Seleccione la consulta que desea realizar:</label>
+    <select id="format-select2" name="format">
+        <option value="1">Registros de hoy según su persona</option>
+        <option value="2">Registros de hoy por rango de horas según su persona</option>
+        <option value="3">Todos los registros de una persona en particular</option>
+        <option value="4">Todos los registros en general</option>
+    </select>
+</form>
+<form>
+    <label for="format-select3">Seleccione el usuario que desea consultar:</label>
+    <select id="format-select3" name="format">
+        <option value="yerelynmoralesmora@gmail.com">Yerelyn Morales Mora</option>
+        <option value="jimecsol@gmail.com">Jimena Carvajal Solano</option>
+        <option value="marcochaves0229@gmail.com">Marco Chaves Torres</option>
+    </select>
+</form>
+<form>
+    <label for="horaInicio">Selecciona la hora de inicio:</label>
+    <select id="horaInicio"></select>
+    <br>
+    <label for="horaFinal">Selecciona la hora final:</label>
+    <select id="horaFinal"></select>
+    <br>
+</form>
+<form>
+    <label for="format-select1">Seleccione el formato que desea:</label>
+    <select id="format-select1" name="format">
+        <option value="xml">XML</option>
+        <option value="csv">CSV</option>
+        <option value="trama plana">Formato Plano</option>
+    </select>
+    <button id="mostrar" type="button">Mostrar Información</button>
+</form>
+
+<h2>Resultado:</h2>
+<pre id="output"></pre>
+<div class="form-group">
+    <textarea id="registros" name="tem_txt" rows="20" cols="180" readonly></textarea>
+</div>
+<script src="scriptBitacora.js"></script>
+</body>
+</html>

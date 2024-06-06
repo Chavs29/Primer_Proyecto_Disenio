@@ -1,8 +1,10 @@
 package com.proyectoDiseno.controller;
 
 import com.proyectoDiseno.model.ServiceResponse;
+import com.proyectoDiseno.service.BitacoraService;
 import com.proyectoDiseno.service.ConexionService;
-import com.proyectoDiseno.servicios_externos.ConexionIA;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
+import java.util.TimeZone;
 
 @RestController
 @RequestMapping("api/v1/Consultas")
@@ -18,12 +23,15 @@ import java.util.Map;
 public class ConsultasExternasController {
     @Autowired
     private ConexionService conexionIA;
+    @Autowired
+    private BitacoraService bitacoraService;
 
     @PostMapping("/consultaChatGPT")
     public ServiceResponse consultarChatGPT(@RequestBody Map<String, String> body) {
         String texto = body.get("texto");
+        String usuario = body.get("usuario");
         String respuesta = conexionIA.generarConexionIA(texto);
-
+        bitacoraService.escribirBitacoras("Consulta a ChatGPT", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), usuario);
         guardarRespuestaEnArchivo(respuesta, "respuestaChatGPT.txt");
 
         ServiceResponse response = new ServiceResponse();
@@ -49,6 +57,8 @@ public class ConsultasExternasController {
             String texto = (String) requestBody.get("texto");
             String pregunta = "Cuáles son las palabra clave en el texto, hazlo solamente separados por comas: " + texto;
             String respuesta = conexionIA.generarConexionIA(pregunta);
+            String usuario = (String) requestBody.get("usuario");
+            bitacoraService.escribirBitacoras("Consulta de Palabras Clave", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), usuario);
             guardarRespuestaEnArchivo(respuesta, "respuestaPalabrasClave.txt");
             response.setSuccess(true);
             response.setMessage(respuesta);
@@ -67,7 +77,8 @@ public class ConsultasExternasController {
             String texto = (String) requestBody.get("texto");
             String pregunta = "Cual es el sentimiento de stanford del texto:" + texto + "Simplemente dame el sentimiento, no digas nada mas(positivo, negativo o neutral).";
             String respuesta = conexionIA.generarConexionIA(pregunta);
-
+            String usuario = (String) requestBody.get("usuario");
+            bitacoraService.escribirBitacoras("Consulta de Sentimiento Stanford", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), usuario);
             guardarRespuestaEnArchivo(respuesta, "respuestaSentimiento.txt");
             response.setSuccess(true);
             response.setMessage(respuesta);
@@ -92,5 +103,11 @@ public class ConsultasExternasController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected String obtenerFechaHora() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Establecer la zona horaria si es necesario
+        return sdf.format(new Date());
     }
 }

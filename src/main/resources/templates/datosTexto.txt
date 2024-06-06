@@ -1,6 +1,6 @@
 Datos del texto:
-Id:13
-Tematica:Inteligencia Artificial_
-Fecha de Registro:2024-04-27
-Cantidad de palabras:39
-Contenido:La inteligencia artificial imita la capacidad cognitiva humana en sistemas computacionales, revolucionando industrias mediante su habilidad para aprender, adaptarse y efectuar decisiones de manera autónoma. Su impacto es notable en diversos sectores, optimizando procesos y mejorando la eficiencia operativa.
+Id:
+Tematica:
+Fecha de Registro:
+Cantidad de palabras:
+Contenido:

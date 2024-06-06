@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(data => {
                     console.log(data);
                     if (data.success) {
+                        escribirBitacora();
                         alert('Texto registrado exitosamente.');
                         form.reset();
                     } else {
@@ -58,5 +59,31 @@ document.addEventListener('DOMContentLoaded', function() {
         var opcionesTexto = document.getElementById("opciones");
         var textoSeleccionado = opciones.options[opcionesTexto.selectedIndex].text;
         return textoSeleccionado;
+    }
+
+    async function escribirBitacora() {
+        const datos = {
+            accion: "Registro de Texto",
+            usuario: correo
+        };
+
+        try {
+            const response = await fetch('http://localhost:9090/api/v1/bitacora/escribir', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al realizar la solicitud: ' + response.statusText);
+            }
+
+            const data = await response.text(); // Si el controlador devuelve un string
+            console.log(data); // Manejar la respuesta del backend
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 });

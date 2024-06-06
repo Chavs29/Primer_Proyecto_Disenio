@@ -122,10 +122,12 @@ async function consultarChatGPT() {
     var palabrasClave = localStorage.getItem('palabrasClave');
     console.log('Consultar ChatGPT clicado');
     var textoSelect= palabrasClave;
+    var correo = localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/Consultas/consultaChatGPT';
     console.log('URL de la solicitud:', url);
     var datos = {
-        texto: textoSelect
+        texto: textoSelect,
+        usuario: correo
     }
     fetch(url, {
         method: 'POST',
@@ -142,12 +144,13 @@ async function consultarChatGPT() {
 }
 
 async function consultarSentimiento() {
-    console.log('Consultar ChatGPT clicado');
     var textoSelect= obtenerTextoSeleccionado();
+    var correo = localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/Consultas/consultaSentimiento';
     console.log('URL de la solicitud:', url);
     var datos = {
-        texto: textoSelect
+        texto: textoSelect,
+        usuario: correo
     }
     fetch(url, {
         method: 'POST',
@@ -166,10 +169,12 @@ async function consultarSentimiento() {
 async function generarPalabrasClave() {
     console.log('Consultar ChatGPT clicado');
     var textoSelect= obtenerTextoSeleccionado();
+    var correo = localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/Consultas/consultaPalabrasClave';
     console.log('URL de la solicitud:', url);
     var datos = {
-        texto: textoSelect
+        texto: textoSelect,
+        usuario: correo
     }
     fetch(url, {
         method: 'POST',
@@ -187,10 +192,12 @@ async function generarPalabrasClave() {
 
 async function generarWordCloud() {
     var textoSelect= obtenerTextoSeleccionado();
+    var correo = localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/WordCloud/generar';
     console.log('URL de la solicitud:', url);
     var datos = {
-        texto: textoSelect
+        texto: textoSelect,
+        usuario: correo
     }
     fetch(url, {
         method: 'POST',
@@ -207,10 +214,12 @@ async function generarWordCloud() {
 
 async function generarAudio() {
     var textoSelect= document.getElementById('cont').value;
+    var correo = localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/Audio/generar';
     console.log('URL de la solicitud:', url);
     var datos = {
-        texto: textoSelect
+        texto: textoSelect,
+        usuario: correo
     }
     fetch(url, {
         method: 'POST',
@@ -308,10 +317,12 @@ async function mostrarRespuestaPalabrasClave() {
 
 async function enviarPDF() {
     var textoSelect= localStorage.getItem('correoo');
+    var correo = localStorage.getItem('correoo');
     var url = 'http://localhost:9090/api/v1/PDF/enviarPDFCorreo';
     console.log('URL de la solicitud:', url);
     var datos = {
-        texto: textoSelect
+        texto: textoSelect,
+        usuario: correo
     }
     fetch(url, {
         method: 'POST',
