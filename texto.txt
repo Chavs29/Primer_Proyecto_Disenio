@@ -1,1 +1,1 @@
-En matemática, una serie es la generalización de la noción de suma, aplicada a los infinitos términos de una sucesión, lo que suele escribirse con el símbolo de sumatorio: donde
+A cloud database is a database that is deployed, delivered, and accessed in the cloud. Cloud databases organize and store structured, unstructured, and semi-structured data just like traditional on-premises databases.

@@ -1,6 +1,6 @@
 Datos del texto:
-Id:
-Tematica:
-Fecha de Registro:
-Cantidad de palabras:
-Contenido:
+Id:5
+Tematica:Database
+Fecha de Registro:2024-06-07
+Cantidad de palabras:49
+Contenido:A cloud database is a database that is deployed, delivered, and accessed in the cloud. Cloud databases organize and store structured, unstructured, and semi-structured data just like traditional on-premises databases. However, they also provide many of the same benefits of cloud computing, including speed, scalability, agility, and reduced costs.

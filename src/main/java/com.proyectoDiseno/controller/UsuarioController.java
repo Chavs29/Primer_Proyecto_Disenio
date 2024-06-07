@@ -1,6 +1,7 @@
 package com.proyectoDiseno.controller;
 
 import com.proyectoDiseno.model.Usuario;
+import com.proyectoDiseno.service.BitacoraService;
 import com.proyectoDiseno.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,12 +29,15 @@ public class UsuarioController {
     @GetMapping("/list")
     public ResponseEntity<List<Usuario>> list(){
         List<Usuario> usuarios = iUsuarioService.getUsuarios();
-
         // Ordena la lista de usuarios alfabéticamente por el nombre
         List<Usuario> usuariosOrdenados = usuarios.stream()
                 .sorted(Comparator.comparing(Usuario::getNombreCompleto))
                 .collect(Collectors.toList());
-
         return new ResponseEntity<>(usuariosOrdenados, HttpStatus.OK);
+    }
+    protected String obtenerFechaHora() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Establecer la zona horaria si es necesario
+        return sdf.format(new Date());
     }
 }

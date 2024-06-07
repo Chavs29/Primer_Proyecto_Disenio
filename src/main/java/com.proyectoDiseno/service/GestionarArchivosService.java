@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class GestionarArchivosService {
     public ArrayList<String> leerTxt(String[] fileNames) {
         try {
-            ArrayList<String> archivo = GestionarArchivos.leerTxtFiles(fileNames);
+            GestionarArchivos nuevo = new GestionarArchivos();
+            ArrayList<String> archivo = nuevo.leerTxtFiles(fileNames);
             return archivo;
         } catch (Exception e) {
             System.out.println("Error al generar el archivo");

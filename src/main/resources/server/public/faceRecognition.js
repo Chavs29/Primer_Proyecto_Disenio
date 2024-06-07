@@ -103,17 +103,10 @@ async function compareWithStoredImages(capturedDescriptor, base64Image) {
         if (matchFound) {
             console.log("Resultado del match: "+true);
             console.log("ruta: "+matchedImage);
-            escribirBitacora();
             window.location.href = "http://127.0.0.1:5500/src/main/resources/templates/menu.html";
-
-            // Espera la respuesta de obtenerNombreUsuario()
-            //const nombreUsuario = await obtenerNombreUsuario();
-
-            //await sendResponseToBackEnd({ match: true, imagePath: matchedImage, nombreDeUsuario: nombreUsuario });
 
         } else {
             alert("Usted no está registrado en el sistema");
-            //await sendResponseToBackEnd({ match: false, imagePath: "false", nombreDeUsuario: "false" });
         }
 
     } catch (error) {
@@ -122,32 +115,6 @@ async function compareWithStoredImages(capturedDescriptor, base64Image) {
     }
 }
 
-const correo = localStorage.getItem('correoo');
-async function escribirBitacora() {
-    const datos = {
-        accion: "Inicio de sesión",
-        usuario: "Hola Prueba"
-    };
-
-    try {
-        const response = await fetch('http://localhost:9090/api/v1/bitacora/escribir', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(datos)
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al realizar la solicitud: ' + response.statusText);
-        }
-
-        const data = await response.text(); // Si el controlador devuelve un string
-        console.log(data); // Manejar la respuesta del backend
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
 
 
 function stopVideoStream() {

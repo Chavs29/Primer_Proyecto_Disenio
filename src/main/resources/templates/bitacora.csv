@@ -1,6 +1,32 @@
 ID,FechaHora,IP,SistemaOperativo,Pais,Accion
-1,2024-06-06 05:20:31,177.93.4.109,Windows 11,Costa Rica,Consulta a ChatGPT,jimecsol@gmail.com
-2,2024-06-06 03:20:47,177.93.4.109,Windows 11,Costa Rica,Consulta de Sentimiento Stanford,jimecsol@gmail.com
-5,2024-06-05 05:20:31,177.93.4.109,Windows 11,Costa Rica,Consulta a ChatGPT,jimecsol@gmail.com
-3,2024-06-06 05:21:04,177.93.4.109,Windows 11,Costa Rica,Consulta de Palabras Clave,jimecsol@gmail.com
-3,2024-06-06 07:21:04,177.93.4.109,Windows 11,Costa Rica,Consulta de Palabras Claves,marcochaves0229@gmail.com
+2,2024-06-07 17:13:33,177.93.4.109,Windows 11,Costa Rica,Consulta de Palabras Clave,jimecsol@gmail.com
+3,2024-06-07 17:13:53,177.93.4.109,Windows 11,Costa Rica,Consulta a ChatGPT,jimecsol@gmail.com
+4,2024-06-07 17:14:11,177.93.4.109,Windows 11,Costa Rica,Consulta de Sentimiento Stanford,jimecsol@gmail.com
+5,2024-06-07 17:14:25,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar WordCloud,jimecsol@gmail.com
+6,2024-06-07 17:14:51,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+7,2024-06-07 17:15:24,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+8,2024-06-07 17:16:09,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:18:49,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:19:43,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:23:12,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:25:34,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:28:59,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+2,2024-06-07 17:31:08,177.93.4.109,Windows 11,Costa Rica,Consulta de Palabras Clave,jimecsol@gmail.com
+3,2024-06-07 17:31:18,177.93.4.109,Windows 11,Costa Rica,Consulta a ChatGPT,jimecsol@gmail.com
+4,2024-06-07 17:31:34,177.93.4.109,Windows 11,Costa Rica,Consulta de Sentimiento Stanford,jimecsol@gmail.com
+5,2024-06-07 17:31:51,177.93.4.109,Windows 11,Costa Rica,Consulta a ChatGPT,jimecsol@gmail.com
+6,2024-06-07 17:32:43,177.93.4.109,Windows 11,Costa Rica,Consulta de Palabras Clave,jimecsol@gmail.com
+7,2024-06-07 17:33:04,177.93.4.109,Windows 11,Costa Rica,Consulta a ChatGPT,jimecsol@gmail.com
+8,2024-06-07 17:33:19,177.93.4.109,Windows 11,Costa Rica,Consulta de Sentimiento Stanford,jimecsol@gmail.com
+9,2024-06-07 17:33:28,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar WordCloud,jimecsol@gmail.com
+10,2024-06-07 17:33:51,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+11,2024-06-07 17:34:11,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+12,2024-06-07 17:36:03,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:37:59,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+2,2024-06-07 17:38:44,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+3,2024-06-07 17:39:19,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+4,2024-06-07 17:39:40,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:41:17,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+2,2024-06-07 17:41:42,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:42:38,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com
+1,2024-06-07 17:45:00,177.93.4.109,Windows 11,Costa Rica,Consulta de Generar Audio,jimecsol@gmail.com

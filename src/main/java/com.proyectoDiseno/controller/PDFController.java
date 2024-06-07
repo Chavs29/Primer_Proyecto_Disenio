@@ -22,12 +22,11 @@ public class PDFController {
     private static final Map<Integer, Function<String, String>> PREFIX_MAP = new HashMap<>();
     @Autowired
     private BitacoraService bitacoraService;
-
     static {
-        PREFIX_MAP.put(0, line -> "ID: " + line);
-        PREFIX_MAP.put(1, line -> "Nombre del usuario/User name: " + line);
-        PREFIX_MAP.put(2, line -> "Email: " + line);
-        PREFIX_MAP.put(3, line -> "Número de teléfono/Phone number: " + line);
+        PREFIX_MAP.put(0, line -> ": " + line);
+        PREFIX_MAP.put(1, line -> ": " + line);
+        PREFIX_MAP.put(2, line -> ": " + line);
+        PREFIX_MAP.put(3, line -> ": " + line);
     }
 
     @Autowired
@@ -44,6 +43,7 @@ public class PDFController {
         String rutaProyecto = System.getProperty("user.dir");
         String asunto = "Datos de Inteligencias JIMAYE";
         String correo = body.get("texto");
+        String idioma = body.get("idioma");
         String[] filesNames = {
                 rutaProyecto + "/src/main/resources/templates/respuestaChatGPT.txt",
                 rutaProyecto + "/src/main/resources/templates/respuestaPalabrasClave.txt",
@@ -51,7 +51,7 @@ public class PDFController {
                 rutaProyecto + "/src/main/resources/templates/datosTexto.txt"
         };
         ArrayList<String> data1 = gestionarArchivosService.leerTxt(filesNames);
-        ArrayList<String> data2 = traducirAlIngles(data1);
+        ArrayList<String> data2 = traducirAIdioma(data1, idioma);
         ArrayList<String> data3 = datosUsuario(correo);
         ArrayList<String> dataFinal = unirArrayLists(data1, data2, data3);
         byte[] pdfBytes = crearPDFService.crearPDF(dataFinal);
@@ -62,13 +62,12 @@ public class PDFController {
             System.out.println("El correo " + correo + " es inválido.");
         }
         String usuario = body.get("usuario");
-        bitacoraService.escribirBitacoras("Consulta de Enviar PDF", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), usuario);
-
+        bitacoraService.escribirBitacoras("Consulta de Generar Audio", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), usuario);
         enviarCorreoService.enviarEmail(correo, asunto, pdfBytes);
         return ResponseEntity.ok("");
     }
 
-    private ArrayList<String> traducirAlIngles(ArrayList<String> dataList) {
+    private ArrayList<String> traducirAIdioma(ArrayList<String> dataList, String idioma) {
         ArrayList<String> translatedList = new ArrayList<>();
         StringBuilder restOfLines = new StringBuilder();
 
@@ -78,15 +77,19 @@ public class PDFController {
         }
 
         String combinedLines = restOfLines.toString();
-        translatedList.add(traducir(combinedLines));
+        translatedList.add(traducir(combinedLines, idioma));
         return translatedList;
     }
 
-    private String traducir(String texto) {
-        String pregunta = "Traduce esto al idioma inglés, solo dame la respuesta, no agregue nada más, debe contener exactamente lo que esta aqui: " + texto;
+    private String traducir(String texto, String idioma) {
+        System.out.println(texto);
+
+        String pregunta = "Te daré un texto, es bastante largo, el texto incluye cantidad de palabras, palabras clave, etc, por favor traducelo absolutamente todo completo y no lo cortes, al idioma " + idioma + ". Este es el texto: "+texto;
         ConexionIA conexionIA = new ConexionIA();
         String respuesta = conexionIA.chatGPT(pregunta);
+        System.out.println(pregunta);
 
+        System.out.println(respuesta);
 
         return respuesta;
     }
@@ -122,9 +125,11 @@ public class PDFController {
             throw new IllegalArgumentException("No prefix mapping found for key: " + key);
         }
     }
+
     protected String obtenerFechaHora() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Establecer la zona horaria si es necesario
+        sdf.setTimeZone(TimeZone.getTimeZone("America/Costa_Rica")); // Establecer la zona horaria a Costa Rica
         return sdf.format(new Date());
     }
+
 }

@@ -29,7 +29,8 @@ public class AudioController {
     }
     protected String obtenerFechaHora() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Establecer la zona horaria si es necesario
+        sdf.setTimeZone(TimeZone.getTimeZone("America/Costa_Rica")); // Establecer la zona horaria a Costa Rica
         return sdf.format(new Date());
     }
+
 }

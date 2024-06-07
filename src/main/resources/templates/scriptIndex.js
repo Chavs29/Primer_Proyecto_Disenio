@@ -20,6 +20,7 @@ document.getElementById("formularioCorreo").addEventListener("submit", async fun
             alert("El correo existe en la base de datos.");
             // Redirigir a IniciarSesion.html si el correo existe
             generarCodigoQR(correo1);
+            escribirBitacora();
             window.location.href = "http://localhost:3000/";
         } else {
             alert("El correo no existe en la base de datos.");
@@ -30,6 +31,32 @@ document.getElementById("formularioCorreo").addEventListener("submit", async fun
     }
 
 
+
+    async function escribirBitacora() {
+        const datos = {
+            accion: "Inicio de sesión",
+            usuario: correo
+        };
+
+        try {
+            const response = await fetch('http://localhost:9090/api/v1/bitacora/escribir', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al realizar la solicitud: ' + response.statusText);
+            }
+
+            const data = await response.text(); // Si el controlador devuelve un string
+            console.log(data); // Manejar la respuesta del backend
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
     async function generarCodigoQR(correo) {
         const formData = new FormData();
         formData.append('cuenta', correo);

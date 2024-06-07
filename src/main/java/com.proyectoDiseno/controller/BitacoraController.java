@@ -30,7 +30,7 @@ public class BitacoraController {
         String accion = body.get("accion");
         String ip = obtenerIP();
         String sistemaOperativo = obtenerSistemaOperativo();
-        String pais = obtenerPais(obtenerIP());
+        String pais = obtenerPais(ip);
         String fechaHora = obtenerFechaHora();
         String usuario = body.get("usuario");
 
@@ -69,11 +69,11 @@ public class BitacoraController {
     }
 
 
-    protected static String obtenerSistemaOperativo() {
+    public static String obtenerSistemaOperativo() {
         return System.getProperty("os.name");
     }
 
-    protected static String obtenerIP() {
+    public static String obtenerIP() {
         String ip = "Unknown";
         try {
             URL url = new URL("https://api.ipify.org?format=json");
@@ -91,7 +91,7 @@ public class BitacoraController {
     }
 
 
-    protected static String obtenerPais(String ip) {
+    public static String obtenerPais(String ip) {
         String country = "Unknown";
         if ("Unknown".equals(ip)) {
             return country;
@@ -114,7 +114,8 @@ public class BitacoraController {
 
     protected String obtenerFechaHora() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Establecer la zona horaria si es necesario
+        sdf.setTimeZone(TimeZone.getTimeZone("America/Costa_Rica")); // Establecer la zona horaria a Costa Rica
         return sdf.format(new Date());
     }
+
 }

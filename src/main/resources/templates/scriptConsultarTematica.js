@@ -315,14 +315,19 @@ async function mostrarRespuestaPalabrasClave() {
     }
 }
 
+
+
+
 async function enviarPDF() {
     var textoSelect= localStorage.getItem('correoo');
     var correo = localStorage.getItem('correoo');
+    var idioma = document.getElementById('format-select1').value;
     var url = 'http://localhost:9090/api/v1/PDF/enviarPDFCorreo';
     console.log('URL de la solicitud:', url);
     var datos = {
         texto: textoSelect,
-        usuario: correo
+        usuario: correo,
+        idioma: idioma
     }
     fetch(url, {
         method: 'POST',

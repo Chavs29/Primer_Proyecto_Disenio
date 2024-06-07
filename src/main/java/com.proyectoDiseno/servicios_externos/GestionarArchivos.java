@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class GestionarArchivos {
+public class GestionarArchivos implements IArchivoLectura{
 
     private static final Map<Integer, Function<String, String>> PREFIX_MAP = new HashMap<>();
 
@@ -19,7 +19,7 @@ public class GestionarArchivos {
         PREFIX_MAP.put(2, line -> "Sentimiento según Stanford: " + line);
     }
 
-    public static ArrayList<String> leerTxtFiles(String[] fileNames) {
+    public  ArrayList<String> leerTxtFiles(String[] fileNames) {
         ArrayList<String> dataList = new ArrayList<>();
 
         for (int i = 0; i < fileNames.length; i++) {

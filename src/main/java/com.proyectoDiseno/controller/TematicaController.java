@@ -1,4 +1,5 @@
 package com.proyectoDiseno.controller;
+import com.proyectoDiseno.service.BitacoraService;
 import com.proyectoDiseno.servicios_externos.ConexionIA;
 import com.proyectoDiseno.model.ServiceResponse;
 import com.proyectoDiseno.model.Tematica;
@@ -11,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,6 +22,9 @@ import java.util.stream.Collectors;
 public class TematicaController {
     @Autowired
     private ITematicaService tematicaService;
+
+    @Autowired
+    private BitacoraService bitacoraService;
 
     @PostMapping("/crear")
     public ResponseEntity<ServiceResponse> crearTematica(@RequestParam("nombre") String nombre,
@@ -52,7 +55,14 @@ public class TematicaController {
         List<Tematica> tematicasOrdenadas = tematicas.stream()
                 .sorted(Comparator.comparing(Tematica::getNombre))
                 .collect(Collectors.toList());
+
+        //bitacoraService.escribirBitacoras("Consulta de Tematicas", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), "Prueba");
         return new ResponseEntity<>(tematicasOrdenadas, HttpStatus.OK);
     }
 
+    protected String obtenerFechaHora() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("America/Costa_Rica")); // Establecer la zona horaria a Costa Rica
+        return sdf.format(new Date());
+    }
 }

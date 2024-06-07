@@ -21,6 +21,7 @@ import java.util.TimeZone;
 @RequestMapping("api/v1/Consultas")
 @CrossOrigin(origins = {"http://localhost:9090", "http://127.0.0.1:5500"})
 public class ConsultasExternasController {
+    public static String usuarioFinal;
     @Autowired
     private ConexionService conexionIA;
     @Autowired
@@ -30,6 +31,7 @@ public class ConsultasExternasController {
     public ServiceResponse consultarChatGPT(@RequestBody Map<String, String> body) {
         String texto = body.get("texto");
         String usuario = body.get("usuario");
+        usuarioFinal=body.get("usuario");
         String respuesta = conexionIA.generarConexionIA(texto);
         bitacoraService.escribirBitacoras("Consulta a ChatGPT", BitacoraController.obtenerIP(), BitacoraController.obtenerSistemaOperativo(), BitacoraController.obtenerPais(BitacoraController.obtenerIP()), obtenerFechaHora(), usuario);
         guardarRespuestaEnArchivo(respuesta, "respuestaChatGPT.txt");
@@ -107,7 +109,7 @@ public class ConsultasExternasController {
 
     protected String obtenerFechaHora() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Establecer la zona horaria si es necesario
+        sdf.setTimeZone(TimeZone.getTimeZone("America/Costa_Rica")); // Establecer la zona horaria a Costa Rica
         return sdf.format(new Date());
     }
 }

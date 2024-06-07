@@ -1,35 +1,47 @@
 body {
-  background-color: #BFBFB8;
+    background-color: #BFBFB8;
 }
-ul{
-   font-family: sans-serif;  
+
+ul {
+    font-family: sans-serif;
 }
-ul li{
+
+ul li {
     display: inline-block;
     text-align: center;
 }
-ul li a{
+
+ul li a {
     text-decoration: none;
     color: #BFBFB8;
     padding: 20px;
     display: block;
 }
-ul li a:hover{
+
+ul li a:hover {
     background: #4C594F;
 }
+
 .cuadroTitulo {
-    
-  width: 100%;
-  height: 100px;
-  padding: 0;
-  background-color: #35403A; /*color del fondo del cuadro*/
-  color: black; /*color del texto del cuadro*/
-  text-decoration: none; 
+    width: 100%;
+    height: 100px;
+    padding: 0;
+    background-color: #35403A; /* color del fondo del cuadro */
+    color: black; /* color del texto del cuadro */
+    text-decoration: none;
 }
 
-select{
+select {
     width: 900px;
 }
+
+/* Adjust the margin-right for the specific select */
+#format-select1 {
+    display: inline-block;
+    margin-left: 10px; /* Ajusta este valor según tus necesidades */
+    width: auto; /* Ajusta el ancho según sea necesario */
+}
+
 h1 {
     color: #BFBFB8;
     font-family: sans-serif;
@@ -38,27 +50,27 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-form{
+
+form {
     font-family: sans-serif;
     font-style: normal;
     text-align: justify;
     padding: 10px;
 }
+
 .datos label,
-.datos select{
-    color: black; /*color del texto del cuadro*/
+.datos select {
+    color: black; /* color del texto del cuadro */
     padding: 20px;
     display: block;
     margin-bottom: 10px;
-    font-size:  15px;
+    font-size: 15px;
 }
-.datos label{
+
+.datos label {
     background-color: #BFBFB8;
-    font-size:  18px;
+    font-size: 18px;
 }
-
-
-
 
 button {
     font-size: 18px;
@@ -76,10 +88,10 @@ button {
     flex: 1; /* Distribuye el espacio disponible entre los botones */
 }
 
-
-button:hover{
-   background: #35403A;
+button:hover {
+    background: #35403A;
 }
+
 .overlay {
     display: none;
     position: fixed;
@@ -116,15 +128,22 @@ button:hover{
     display: flex;
     width: 100%;
     margin-bottom: 10px;
+}
 
-    .form-group {
-        flex: 1;
-        margin-right: 10px;
-    }
+.form-row .form-group {
+    flex: 1;
+    margin-right: 10px;
+}
 
-    textarea {
-        width: 100%;
-        box-sizing: border-box;
-        margin-top: 5px;
-    }
+.form-row textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+/* Align label and select within .botones */
+.botones label,
+.botones select {
+    display: inline-block;
+    vertical-align: middle;
 }
